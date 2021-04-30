@@ -103,7 +103,7 @@ class Solution{
 // tc o(log2N)
 // sc o(1)
 
- int bs(int arr[], int N, int K)
+    int bs(int arr[], int N, int K)
     {
         int l = 0, r = N - 1;
         while(l <= r)
@@ -126,9 +126,10 @@ class Solution{
     }
     int ternarySearch(int arr[], int N, int K) 
     { 
-        return bs(arr, N, K);
+        return bs(arr, N, K) == -1 ? -1 : 1;
     }
 };
 
+  
 // tc o(log2N)
 // sc o(1)
