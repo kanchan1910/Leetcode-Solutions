@@ -79,7 +79,7 @@ if(sum1==c and r<minv):
     minv=r
  
 while(1):
-    if(j<len(b) and sum1+b[j]<=c):
+    if(j>=0 and sum1+b[j]<=c):
         sum1=sum1+b[j]
         j=j-1
         r=r+1
