@@ -1,4 +1,4 @@
- string removeKdigits(string num, int k)
+string removeKdigits(string num, int k)
     {
           int n = num.length();
         if(k == 0)
