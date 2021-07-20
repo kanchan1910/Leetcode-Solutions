@@ -37,6 +37,7 @@
         }
         for(int i = 1; i < K; i++)
         {
+        // one more doubt, can't we just take, arr[i] instead of tmp, then , tc will be reduced to o(k * k)
             vector<int>tmp;
             for(int j = 0; j < K; j++)
             {
