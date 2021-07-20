@@ -77,5 +77,6 @@
         return ans;
     }
     
+    // according to me tc should be o(k * log(k))
     // tc o(k * k * log(k))
     // sc o(k)
