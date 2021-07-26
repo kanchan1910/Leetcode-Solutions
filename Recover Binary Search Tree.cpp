@@ -1,3 +1,7 @@
+// can be done my first calculating the inorder traversal array., and then making these changes in the array and then converting that array into te binary search structure
+// its tc o(n)
+// sc o(n)
+
 
 class Solution {
 public:
