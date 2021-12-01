@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) 
+    {
+        int n =  nums.size();
+        // greedy will fail {2,1,1,2}
+        // will go for dp approach
+        vector<int>dp(n, -1);
+        dp[0] = nums[0];
+        if(n == 1)
+        {
+            return dp[0];
+        }
+        dp[1] = max(nums[0], nums[1]);
+        for(int i = 2; i < n; i++)
+        {
+            int taking = nums[i] + dp[i - 2];
+            int not_taking = dp[i - 1];
+            dp[i] = max(taking, not_taking);
+        }
+        return dp[n - 1];
+    }
+};
+tc o(n) sc o(n)
+
+
+==================================================================
+class Solution {
+public:
+    int rob(vector<int>& nums) 
+    {
+        int n =  nums.size();
+        // greedy will fail {2,1,1,2}
+        // will go for dp approach
+        int a, b, c;
+        a = nums[0];
+        if(n == 1)
+        {
+            return a;
+        }
+        b = max(nums[0], nums[1]);
+        if(n == 2)
+        {
+            return b;
+        }
+        for(int i = 2; i < n; i++)
+        {
+            int taking = nums[i] + a;
+            int not_taking = b;
+            c = max(taking, not_taking);
+            a = b;
+            b = c;            
+        }
+        return c;
+    }
+};
+tc o(n) sc o(1)
