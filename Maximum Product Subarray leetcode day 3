@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums)
+    {
+        int n = nums.size();
+        int ans = *max_element(nums.begin(), nums.end());
+        int curmax = 1, curmin = 1;
+        for(int i = 0; i < n; i++)
+        {
+            if(nums[i] == 0)
+            {
+                curmax = 1;
+                curmin = 1;
+                continue;
+            }
+            int tmp = curmax;
+            curmax = max({nums[i], curmax * nums[i], curmin * nums[i]});
+            curmin = min({nums[i], tmp * nums[i], curmin *  nums[i]});
+            ans = max(ans, curmax);
+        }
+        return ans;
+    }
+};
+
+tc o(n) sc o(1)
