@@ -1,0 +1,64 @@
+class StreamChecker {
+    struct TrieNode
+    {
+        bool endHere = false;
+        struct TrieNode* child[26];
+    };
+public:
+    TrieNode* root = new TrieNode();
+    string str = "";
+    void insert(string word)
+    {
+        TrieNode* cur = root;
+        int len = word.length();
+        for(int i = len - 1; i >= 0; i--)
+        {
+            if(cur->child[word[i] - 'a'] == NULL)
+            {
+                cur->child[word[i] - 'a'] = new TrieNode();
+                cur = cur->child[word[i] - 'a'];
+            }
+            else
+            {
+                cur = cur->child[word[i] - 'a'];
+            }
+        }
+        cur->endHere = true;
+    }
+    StreamChecker(vector<string>& words) 
+    {
+        for(int i = 0; i < words.size(); i++)
+        {
+            insert(words[i]);
+        }
+    }
+    
+    bool query(char letter) 
+    {
+        str += letter;
+        TrieNode* cur = root;
+        for(int i = str.length() - 1; i >= 0; i--)
+        {
+            if(cur->child[str[i] - 'a'] == NULL)
+            {
+                return false;
+            }
+            cur = cur->child[str[i] - 'a'];
+            if(cur->endHere == true)
+            {
+                return true; 
+            }
+        }
+        return false;
+    }
+};
+
+/**
+ * Your StreamChecker object will be instantiated and called as such:
+ * StreamChecker* obj = new StreamChecker(words);
+ * bool param_1 = obj->query(letter);
+ */
+ 
+ tc insert o(word length), overall inserting time complexity o(n * word length)
+    search o(string length)
+ sc  o(n * word length)
