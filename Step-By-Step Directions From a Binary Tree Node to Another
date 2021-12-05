@@ -1,0 +1,90 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lca_fun(TreeNode* root, int a, int b)
+    {
+        if(root == NULL)
+        {
+            return NULL;
+        }
+        if(root->val == a || root->val == b)
+        {
+            return root;
+        }
+        TreeNode* left = lca_fun(root->left, a, b);
+        TreeNode* right = lca_fun(root->right, a, b);
+        if(left != NULL && right != NULL)
+        {
+            return root;
+        }
+        else if(left != NULL)
+        {
+            return left;
+        }
+        else if(right != NULL)
+        {
+            return right;
+        }
+        return NULL;
+    }
+    void start_to_lca(TreeNode* root, int start, string& ans, string& str)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        if(root->val == start)
+        {
+            ans += str;
+            return;
+        }
+        str += "U";
+        start_to_lca(root->left, start, ans, str);
+        start_to_lca(root->right, start, ans, str);
+        str.pop_back();
+    }
+    void lca_to_end(TreeNode* root, int end, string& ans, string& str)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        if(root->val == end)
+        {
+            ans += str;
+            return;
+        }
+        str += "L";
+        lca_to_end(root->left, end, ans, str);
+        str.pop_back();
+        str += "R";
+        lca_to_end(root->right, end, ans, str);
+        str.pop_back();
+    }
+    string getDirections(TreeNode* root, int startValue, int destValue) 
+    {
+        string ans = "";
+        TreeNode* lca = lca_fun(root, startValue, destValue);
+        if(lca == NULL)
+        {
+            return ans;
+        }
+        string str = "";
+        start_to_lca(lca, startValue, ans, str);
+        str = "";
+        lca_to_end(lca, destValue, ans, str);
+        return ans;
+    }
+};
+
+tc o(n) sc o(h), h is the height of the tree
