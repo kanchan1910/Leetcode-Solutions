@@ -1,0 +1,68 @@
+class Solution {
+public:
+    bool canReach(vector<int>& arr, int start) 
+    {
+        int n = arr.size();
+        if(arr[start] == 0)
+        {
+            return true;
+        }
+        queue<pair<int, int>>q;
+        q.push({start, arr[start]});
+        unordered_set<int>s;
+        while(!q.empty())
+        {
+            int index = q.front().first;
+            int value = q.front().second;
+            q.pop();
+            int newValue1 = index - value;
+            int newValue2 = index + value;
+            if((newValue1 >= 0 && newValue1 < n && arr[newValue1] == 0) || (newValue2 >= 0 && newValue2 < n && arr[newValue2] == 0))
+            {
+                return true;
+            }
+            if((newValue1 >= 0 && newValue1 < n && s.find(newValue1) == s.end()))
+            {
+                s.insert(newValue1);
+                q.push({newValue1, arr[newValue1]});
+            }
+            
+            if((newValue2 >= 0 && newValue2 < n && s.find(newValue2) == s.end()))
+            {
+                s.insert(newValue2);
+                q.push({newValue2, arr[newValue2]});
+            }
+        }
+        return false;
+    }
+};
+
+tc o(n) sc o(n)
+
+
+
+// 0 1 2 3 4 5 6
+// 4 2 3 0 3 1 2
+    
+// (5, 1) -> (4, 3), (6, 2)
+// (4, 3) -> (1, 3)
+// (6, 2) -> (4, 3)
+// (1, 3) -> (3, 0)
+    
+// 0 1 2 3 4 5 6
+// 4 2 3 0 3 1 2 
+    
+// (0, 4) -> (4, 3)
+// (4, 3) -> (1, 3)
+// (6, 2) -> (4, 3)
+// (1, 3) -> (3, 0)
+    
+    
+// 0 1 2 3 4
+// 3 0 2 1 2
+
+// (2, 2) -> (0, 3), (4, 2)
+// (0, 3) -> (3, 1)
+// (4, 2) -> (2, 2)
+// (3, 1) ->(2, 2), (4, 2)
+// (2, 2) -> (0, 3), (4, 2)
