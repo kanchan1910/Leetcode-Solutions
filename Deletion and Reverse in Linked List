@@ -1,0 +1,33 @@
+Its circular linked list
+void deleteNode(struct Node **head, int key)
+{
+    Node* cur = *head;
+    Node* prev = NULL;
+    while(cur != NULL)
+    {
+        if(cur->data == key)
+        {
+            prev->next = cur->next;
+            break;
+        }
+        prev = cur;
+        cur = cur->next;
+    }
+}
+
+/* Function to reverse the linked list */
+ void reverse(struct Node** head)
+{
+    Node* cur = *head;
+    Node* prev = NULL;
+    do 
+    {
+        Node* next  = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    while(cur != *head);
+    cur->next = prev;
+    *head = prev;
+}
