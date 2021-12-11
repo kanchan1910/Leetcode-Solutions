@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int nthMagicalNumber(int n, int a, int b)
+    {
+        int i = min(a, b);
+        while(n > 0)
+        {
+            if(i % a == 0 || i % b == 0)
+            {
+                n--;
+            }
+            i++;
+        }
+        return (i - 1) % 1000000007;
+    }
+};
+TLE (Brute force)
+
+
+class Solution {
+public:
+    int nthMagicalNumber(int n, int a, int b)
+    {
+        long long l = min(a, b);
+        long long r = 1e17;
+        long long lcmans = (a * b) / __gcd(a, b);
+        // in normal bianry search gives worng in this test case, gives answer as 42 instead of 40
+        /*
+        8
+        10
+        5
+        */
+        while(l < r)
+        {
+            long long mid = (l + r) / 2;
+            long long count = mid / a + mid / b - mid / lcmans;
+            if(count < n)
+            {
+                l = mid + 1;
+            } 
+            else
+            {
+                r = mid;
+            }
+        }
+        return l % 1000000007;
+    }
+};
+
+// Binary search
