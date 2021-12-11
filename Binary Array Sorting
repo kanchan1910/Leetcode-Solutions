@@ -1,0 +1,50 @@
+// sorting solution tc o(nlogn) sc o(1)
+// count solution tc o(n) + o(n) sc o(1)
+
+ vector<int> SortBinaryArray(vector<int> arr)
+    {
+        int index = 0;
+        int n = arr.size();
+        int start = 0;
+        for(int i = 0; i < n; )
+        {
+            if(arr[i] == 0)
+            {
+                swap(arr[i], arr[start]);
+                start++;
+            }
+            if(arr[i] == 1)
+            {
+                i++;
+            }
+        }
+        return arr;
+    }
+    tc o(n*n) in worst case sc o(1)
+    
+    
+    vector<int> SortBinaryArray(vector<int> arr)
+    {
+        
+        int n = arr.size();
+        int l = 0, r = n - 1;
+        while(l < r)
+        {
+            if(arr[l] == 0)
+            {
+                l++;
+            }
+            else if(arr[r] == 1)
+            {
+                r--;
+            }
+            if(arr[l] == 1 && arr[r] == 0)
+            {
+                swap(arr[l], arr[r]);
+                l++;
+                r--;
+            }
+        }
+        return arr;
+    }
+    tc o(n) sc o(1)
