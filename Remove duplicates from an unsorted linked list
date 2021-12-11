@@ -1,0 +1,21 @@
+Node * removeDuplicates( Node *head) 
+    {
+        unordered_set<int>s;
+        Node* cur = head;
+        Node* prev = NULL;
+        while(cur != NULL)
+        {
+            if(s.find(cur->data) == s.end())
+            {
+                s.insert(cur->data);
+                prev = cur;
+            }
+            else
+            {
+                prev->next = cur->next;
+            }
+            cur = cur->next;
+        }
+        return head;
+    }
+    tc o(n) sc o(n)
