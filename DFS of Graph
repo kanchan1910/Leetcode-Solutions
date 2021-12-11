@@ -1,0 +1,22 @@
+ void dfs(int v, vector<int> adj[], int source, vector<int>& ans, vector<bool>& vis)
+  {
+      vis[source] = true;
+      ans.push_back(source);
+      for(auto child : adj[source])
+      {
+          if(!vis[child])
+          {
+              dfs(v, adj, child, ans, vis);
+          }
+      }
+  }
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[])
+    {
+        vector<int>ans;
+        vector<bool>vis(V, false);
+        dfs(V, adj, 0, ans, vis);
+        return ans;
+    }
+    
+    tc o(v + e) sc o(v)
