@@ -1,0 +1,31 @@
+void SortedStack :: sort()
+{
+    stack<int>tmp;
+    while(!s.empty())
+    {
+        int top = s.top();
+        s.pop();
+        if(tmp.empty())
+        {
+            tmp.push(top);
+        }
+        else
+        {
+            if(tmp.top() <= top)
+            {
+                tmp.push(top);
+            }
+            else
+            {
+                while(tmp.size() > 0 &&  tmp.top() > top)
+                {
+                    s.push(tmp.top());
+                    tmp.pop();
+                }
+                tmp.push(top);
+            }
+        }
+    }
+    s = tmp;
+}
+tc o(n^2) sc o(n)
