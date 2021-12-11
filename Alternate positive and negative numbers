@@ -1,0 +1,35 @@
+void rearrange(int arr[], int n) {
+	    vector<int>tmp;
+	    int count = 0;
+	    for(int i = 0; i < n; i++)
+	    {
+	        if(arr[i] >= 0)
+	        {
+	            count++;
+	            tmp.push_back(arr[i]);
+	        }
+	    }
+	    for(int i = 0; i < n; i++)
+	    {
+	        if(arr[i] < 0)
+	        {
+	            tmp.push_back(arr[i]);
+	        }
+	    }
+	    int k = 0;
+	    int i = 0, j = count;
+	    while(i < count && j < n)
+	    {
+	        arr[k++] = tmp[i++];
+	        arr[k++] = tmp[j++];
+	    }
+	    while(i < count)
+	    {
+	        arr[k++] = tmp[i++];
+	    }
+	    while(j < n)
+	    {
+	        arr[k++] = tmp[j++];
+	    }
+	}
+  tc o(n) sc o(n)
