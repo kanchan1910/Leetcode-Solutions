@@ -56,7 +56,6 @@ public:
     }
     int subarraysWithKDistinct(vector<int>& nums, int k)
     {
-        cout << fun(nums, k) << " " << fun(nums, k - 1) << endl;
         return fun(nums, k) - fun(nums, k - 1);
     }
 };
