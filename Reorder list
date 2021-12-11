@@ -1,0 +1,39 @@
+Node* reverse(Node* head)
+{
+    Node* cur = head;
+    Node* prev = NULL;
+    while(cur != NULL)
+    {
+        Node* next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return prev;
+}
+void reorderList(Node* head) 
+{
+    Node* slow = head;
+    Node* fast = head;
+    Node* prev = NULL;
+    while(fast != NULL && fast->next != NULL)
+    {
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    Node* new_head = slow->next;
+    slow->next = NULL;
+    new_head = reverse(new_head);
+    Node* cur2 = new_head;
+    Node* cur1 = head;
+    while(cur1 != NULL && cur2 != NULL)
+    {
+        Node* next1 = cur1->next;
+        cur1->next = cur2;
+        cur1 = next1;
+        Node* next2 = cur2->next;
+        cur2->next = cur1;
+        cur2 = next2;
+    }
+}
