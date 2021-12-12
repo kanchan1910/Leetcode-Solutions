@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int minimumRefill(vector<int>& plants, int capacityA, int capacityB)
+    {
+        int n = plants.size();
+        int ans = 0;
+        int initialA = capacityA, initialB = capacityB;
+        int l = 0, r = n - 1;
+        while(l < r)
+        {
+            if(plants[l] <= capacityA)
+            {
+                capacityA -= plants[l];
+                l++;
+            }
+            else
+            {
+                capacityA = initialA;
+                ans++;
+                capacityA -= plants[l];
+                l++;
+            }
+            if(plants[r] <= capacityB)
+            {
+                capacityB -= plants[r];
+                r--;
+            }
+            else
+            {
+                capacityB = initialB;
+                ans++;
+                capacityB -= plants[r];
+                r--;
+            }
+        }
+        if(l != r)
+        {
+            return ans;
+        }
+        if(capacityA >= capacityB)
+        {
+            if(plants[l] > capacityA)
+            {
+                ans++;
+            }
+        }
+         if(capacityA < capacityB)
+        {
+            if(plants[l] > capacityB)
+            {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+tc o(n) sc o(1)
