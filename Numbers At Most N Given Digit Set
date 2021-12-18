@@ -1,0 +1,41 @@
+class Solution {
+public:
+    // referece :
+    // https://youtu.be/jgBajeBZtuY
+    // https://leetcode.com/problems/numbers-at-most-n-given-digit-set/discuss/1633420/C%2B%2B-EASY-TO-SOLVE-oror-Beginner-Friendly-Detailed-Explanation-with-dry-run
+    
+    int atMostNGivenDigitSet(vector<string>& digits, int n) 
+    {
+        string des = to_string(n);
+        int len = des.length();
+        int nn = digits.size();
+        int ans = 0;
+        // where the number of digit is less than the length of the des number
+        for(int i = 1; i < len; i++)
+        {
+            ans += pow(nn, i);
+        }
+        // Where the number of digits are same as the length of the des number
+        for(int i = 0; i < len; i++)
+        {
+            bool isSameNumber = false;
+            for(int j = 0; j < nn; j++)
+            {
+                if(digits[j][0] < des[i])
+                {
+                    ans += pow(nn, len - i - 1);
+                }
+                if(digits[j][0] == des[i])
+                {
+                    isSameNumber = true;
+                }
+            }
+            if(isSameNumber == false)
+            {
+                return ans;
+            }
+        }
+        // 5377 case, {"1", "3", "5", "7"}
+        return ans + 1;
+    }
+};
