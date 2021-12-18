@@ -1,0 +1,22 @@
+int fun(Node* root, int& ans)
+{
+    if(root == NULL)
+    {
+        return INT_MAX;
+    }
+    if(root->left == NULL && root->right == NULL)
+    {
+        return root->data;
+    }
+    int minValue = min(fun(root->left, ans), fun(root->right, ans));
+    ans = max(ans, root->data - minValue);
+    return min(root->data, minValue);
+}
+int maxDiff(Node* root)
+{
+    int ans = INT_MIN;
+    fun(root, ans);
+    return ans;
+}
+
+tc o(n) sc o(h)
