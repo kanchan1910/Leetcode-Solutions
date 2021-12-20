@@ -1,0 +1,19 @@
+void dfs(int n, vector<int>adj[], int source, int des, int& ans)
+    {
+        if(source == des)
+        {
+            ans++;
+            return;
+        }
+        for(auto child: adj[source])
+        {
+            dfs(n, adj, child, des, ans);
+        }
+    }
+    // Function to count paths between two vertices in a directed graph.
+    int countPaths(int V, vector<int> adj[], int source, int destination)
+    {
+        int ans = 0;
+        dfs(V, adj, source, destination, ans);
+        return ans;
+    }
