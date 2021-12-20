@@ -1,0 +1,71 @@
+class Solution {
+public:
+    int fun(vector<int>& ans, int x)
+    {
+        int l = 0, r = ans.size() - 1;
+        while(l < r)
+        {
+            int mid = (l + r) / 2;
+            
+            if(ans[mid] <= x)
+            {
+                l = mid + 1;
+            }
+            else if(ans[mid] > x)
+            {
+                r = mid;
+            }
+        }
+        return l;
+    }
+    int LIS(vector<int>& nums) 
+    {
+        int n = nums.size();
+        vector<int>ans;
+        ans.push_back(nums[0]);
+        for(int i = 1; i < n; i++)
+        {
+            if(ans[ans.size() - 1] <= nums[i])
+            {
+                ans.push_back(nums[i]);
+            }
+            else
+            {
+                int index = fun(ans, nums[i]);
+                ans[index] = nums[i];
+            }
+        }
+        return ans.size();
+    }
+    // int LIS(vector<int>& tmp)
+    // {
+    //     int ans = 0;
+    //     vector<int>dp(tmp.size(), 1);
+    //     for(int i = 1; i < tmp.size(); i++)
+    //     {
+    //         for(int j = 0; j < i; j++)
+    //         {
+    //             if(tmp[j] <= tmp[i])
+    //             {
+    //                 dp[i] = max(dp[i], dp[j] + 1);
+    //             }
+    //         }
+    //     }
+    //     return *max_element(dp.begin(), dp.end());
+    // }
+    int kIncreasing(vector<int>& arr, int k)
+    {
+        int n = arr.size();
+        int ans = 0;
+        for(int i = 0; i < k; i++)
+        {
+            vector<int>tmp;
+            for(int j = i; j < n; j += k)
+            {
+                tmp.push_back(arr[j]);
+            }
+            ans += tmp.size() - LIS(tmp);
+        }
+        return ans;
+    }
+};
