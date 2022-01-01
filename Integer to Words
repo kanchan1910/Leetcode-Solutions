@@ -1,0 +1,41 @@
+
+class Solution{   
+public:
+    string ones[20] = {"","one ", "two ","three ","four ", "five ","six ","seven ","eight ","nine ","ten ","eleven ","twelve ","thirteen ","fourteen ","fifteen ","sixteen ","seventeen ","eighteen ","nineteen "};
+    string tens[10] = {"","","twenty ","thirty ","forty ","fifty ","sixty ","seventy ","eighty ","ninety "};
+    string fun(int n, string str)
+    {
+        string ans = "";
+        if(n <= 19)
+        {
+            ans += ones[n];
+        }
+        else
+        {
+            ans += tens[n / 10] + ones[n % 10];
+        }
+        // 17
+        if(n != 0)
+        {
+            ans += str;
+        }
+        return ans;
+    }
+    string convertToWords(long n) 
+    {
+        string ans = "";
+        ans += fun(n / 10000000, "crore ");
+        ans += fun((n / 100000) % 100, "lakh ");
+        ans += fun((n / 1000) % 100, "thousand ");
+        ans += fun((n / 100) % 10, "hundred ");
+        // 17
+        if(n > 100 && n % 100 != 0)
+        {
+            ans += "and ";
+        }
+        ans += fun((n % 100), "");
+        return ans;
+    }
+};
+tc o(1)
+sc o(1)
