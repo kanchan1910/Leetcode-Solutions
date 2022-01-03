@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust)
+    {
+        vector<bool>isJudge(n + 1, true);
+        for(int i = 0; i < trust.size(); i++)
+        {
+            isJudge[trust[i][0]] = false;
+        }
+        int ans = -1;
+        for(int i = 1; i <= n; i++)
+        {
+            if(isJudge[i] == true)
+            {
+                ans = i;
+            }
+        }
+        int count = 0;
+        for(int i = 0; i < trust.size(); i++)
+        {
+            if(trust[i][1] == ans)
+            {
+                count++;
+            }
+        }
+        if(count == n - 1)
+        {
+            return ans;
+        }
+        return -1;
+    }
+};
+tc o(n) sc o(n)
