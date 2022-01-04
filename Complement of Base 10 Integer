@@ -1,5 +1,6 @@
 class Solution {
 public:
+// take example of 1010 (10) -> 0101(5) for better understanding
     int bitwiseComplement(int n) 
     {
         int ans = 0;
