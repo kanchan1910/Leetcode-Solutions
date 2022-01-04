@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int bitwiseComplement(int n) 
+    {
+        int ans = 0;
+        int power = 1;
+        if(n == 0)
+        {
+            return 1;
+        }
+        while(n > 0)
+        {
+            int bit = n & 1;
+            if(bit == 0)
+            { 
+                // ans += (1 * power);  
+                ans += power;
+            }
+            power = power * 2;
+            n = n >> 1;
+        }
+        return ans;
+    }
+};
+sc o(1) tc o(n)
