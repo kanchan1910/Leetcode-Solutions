@@ -1,0 +1,14 @@
+vector <int> search(string pat, string txt)
+{
+    vector<int>ans;
+    for(int i = 0; i < txt.length(); i++)
+    {
+        if(txt.substr(i, pat.length()) == pat)
+        {
+            ans.push_back(i + 1);
+        }
+    }
+    return ans;
+}
+
+tc o(n * n) sc o(1)
