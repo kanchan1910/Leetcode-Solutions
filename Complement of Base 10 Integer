@@ -23,4 +23,4 @@ public:
         return ans;
     }
 };
-sc o(1) tc o(n)
+sc o(1) tc o(logn)
