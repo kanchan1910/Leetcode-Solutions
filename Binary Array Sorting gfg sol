@@ -1,0 +1,25 @@
+void binSort(int arr[], int n)
+    {
+
+        int l = 0, r = n - 1;
+        while(l < r)
+        {
+            if(arr[l] == 0)
+            {
+                l++;
+            }
+            else if(arr[r] == 1)
+            {
+                r--;
+            }
+            if(arr[l] == 1 && arr[r] == 0)
+            {
+                swap(arr[l], arr[r]);
+                l++;
+                r--;
+            }
+        }
+    }
+    tc o(N) sc o(1)
+    
+    Another solution is to use sort function tc o(nlogn), or to first count the number of zeros and the arrange the array accordingly tc o(n) + o(n).
