@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool isPalindrome(string str)
+    {
+        for(int i = 0; i < str.length() / 2; i++)
+        {
+            if(str[i] != str[str.length() - 1 - i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    void fun(string &s, vector<string>& tmp, vector<vector<string>>& ans, int& n, int index)
+    {
+        if(index == n)
+        {
+            ans.push_back(tmp);
+            return;
+        }
+        for(int i = index; i < n; i++)
+        {
+            string str = s.substr(index, i - index + 1);
+            if(isPalindrome(str) == true)
+            {
+                tmp.push_back(str);
+                fun(s, tmp, ans, n, i + 1);
+                tmp.pop_back();
+            }
+        }
+    }
+    vector<vector<string>> partition(string s) 
+    {
+        vector<vector<string>>ans;
+        int n = s.length();
+        vector<string>tmp;
+        fun(s, tmp, ans, n, 0);
+        return ans;
+    }
+};
+
+Time Complexity : o(n * 2^n), where N is the length of string s. This is the worst-case time complexity when all the possible substrings are palindrome.
+Space Complexity: o(n) , where NN is the length of the string s. This space will be used to store the recursion stack.
