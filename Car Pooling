@@ -22,7 +22,7 @@ public:
         return true;
     }
 };
-tc o(n) sc o(10001) or sc o(max(to))
+tc o(n) sc o(10001) 
 
 =========================================
 class Solution {
