@@ -26,6 +26,7 @@ public:
     int getRandom()
     {
         int random_index = rand() % len;
+        // was thinking of removing ptr pointer also, and doing with only cur, bit it will give runtime error because, if getRamdon func if called again and again and cur is NULL the, cur = cur->next will give runtime error, but if ptr is used then [tr is always initialized to cur that is head, each time the function is called.
         ListNode* ptr = cur;
         for(int i = 0; i < random_index; i++)
         {
