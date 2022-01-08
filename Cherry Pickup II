@@ -1,0 +1,45 @@
+class Solution {
+public:
+    int dp[75][75][75];
+    int fun(vector<vector<int>>& grid, int n, int m, int i, int j1, int j2)
+    {
+        // base case
+        if(i == n)
+        {
+            return 0;
+        }
+        if(j1 < 0 || j2 < 0 || j1 >= m || j2 >= m)
+        {
+            return INT_MIN; 
+        }
+        if(dp[i][j1][j2] != -1)
+        {
+            return dp[i][j1][j2];
+        }
+        int cur = grid[i][j1] + grid[i][j2];
+        if(j1 == j2)
+        {
+            cur -= grid[i][j1];
+        }
+        int ans = INT_MIN;
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1, j2));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1, j2 - 1));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1, j2 + 1));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 - 1, j2));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 - 1, j2 - 1));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 - 1, j2 + 1));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 + 1, j2));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 + 1, j2 - 1));
+        ans = max(ans, cur + fun(grid, n, m, i + 1, j1 + 1, j2 + 1));
+        return dp[i][j1][j2] = ans;
+    }
+    int cherryPickup(vector<vector<int>>& grid) 
+    {
+        int n = grid.size();
+        int m = grid[0].size();
+        memset(dp, -1, sizeof(dp));
+        return fun(grid, n, m, 0, 0, m - 1);
+    }
+};
+
+tc o(n * n) sc o(n * m * m)
