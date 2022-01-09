@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int fun1(string str, int index)
+    {
+        int count = 0;
+        char ch = str[index];
+        while(index < str.length() && ch == str[index])
+        {
+            count++;
+            index++;
+        }
+        return count;
+    }
+    bool fun(string s, string word)
+    {
+        int sindex = 0, wordindex = 0;
+        while(sindex < s.length() && wordindex < word.length())
+        {
+            if(s[sindex] != word[wordindex])
+            {
+                return false;
+            }
+            int scount = fun1(s, sindex);
+            int wordcount = fun1(word, wordindex);
+            if(wordcount > scount || (wordcount != scount) && scount < 3)
+            {
+                return false;
+            }
+            sindex += scount;
+            wordindex += wordcount;
+        }
+        return sindex == s.size() && wordindex == word.size();
+    }
+    int expressiveWords(string s, vector<string>& words) 
+    {
+        int n = words.size();
+        int ans = 0;
+        for(auto word : words)
+        {
+            if(fun(s, word) == true)
+            {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+tc o(n * min(str.length(), word.length())
+sc o(1)
