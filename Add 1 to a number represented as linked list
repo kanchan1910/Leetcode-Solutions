@@ -1,0 +1,41 @@
+class Solution
+{
+    public:
+    Node* reverse(Node* head)
+    {
+        Node* prev = NULL;
+        Node* cur = head;
+        while(cur != NULL)
+        {
+            Node* next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+    Node* addOne(Node *head) 
+    {
+        head = reverse(head);
+        int carry = 1;
+        Node* cur = head;
+        Node* prev;
+        
+        while(cur != NULL && carry != 0)
+        {
+            cur->data += carry;
+            carry = cur->data / 10;
+            cur->data %= 10;
+            prev = cur;
+            cur = cur->next;
+        }
+        if(carry != 0)
+        {
+            prev->next = new Node(carry);
+        }
+        head = reverse(head);
+        return head;
+    }
+};
+
+tc o(n) sc o(1)
