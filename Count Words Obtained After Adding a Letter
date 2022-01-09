@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int wordCount(vector<string>& start, vector<string>& target)
+    {
+        // check if length of word is present length of words - 1 and all the characters of the word should be there in the present word
+        unordered_set<string>s;
+        int ans = 0;
+        for(auto &word : start)
+        {
+            sort(word.begin(), word.end());
+            s.insert(word);
+        }
+        for(auto &word : target)
+        {
+            sort(word.begin(), word.end());
+        }
+        for(auto &word : target)
+        {
+            for(int i = 0; i < word.size(); i++)
+            {
+                string str = word.substr(0, i) + word.substr(i + 1);
+                if(s.find(str) != s.end())
+                {
+                    ans++;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+tc o(n * len) sc o(n)
