@@ -1,0 +1,49 @@
+void clonestack(stack<int> st, stack<int>& cloned)
+    {
+        int n = st.size();
+        int count = 0;
+        // last step is unecessary, so we can skip that, so count != st.size() - 1 is ok
+        while(count != st.size() - 1)
+        {
+            int top = st.top();
+            st.pop();
+            while(st.size() > 0 && count != st.size())
+            {
+                cloned.push(st.top());
+                st.pop();
+            }
+            st.push(top);
+            while(cloned.size() > 0)
+            {
+                st.push(cloned.top());
+                cloned.pop();
+            }
+            count++;
+        }
+        // now st is a reversed stack so
+        while(st.size() > 0)
+        {
+            cloned.push(st.top());
+            st.pop();
+        }
+    }
+    tc o(n * n) sc o(1)
+    ========================
+    cloned = st;
+    tc o(n * n) sc o(1)
+    =======================
+    void clonestack(stack<int> st, stack<int>& cloned)
+    { 
+        vector<int>tmp;
+        while(st.size() > 0)
+        {
+            tmp.push_back(st.top());
+            st.pop();
+        }
+        reverse(tmp.begin(), tmp.end());
+        for(int i = 0; i < tmp.size(); i++)
+        {
+            cloned.push(tmp[i]);
+        }
+    }
+    tc o(n) sc o(n)
