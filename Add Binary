@@ -19,7 +19,6 @@ public:
                 sum += (b[j] - '0');
             }
             sum += carry;
-            carry;
             ans += ((sum % 2) + '0');
             carry = sum / 2;
             i++;
