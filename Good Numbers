@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        int n;
+        cin >> n;
+        if(n == 1)
+        {
+            cout << "1" << endl;
+        }
+        else if(n == 2)
+        {
+            cout << "2" << endl;
+            
+        }
+        else
+        {
+                queue<string>q;
+                q.push("1");
+                q.push("2");
+                n -= 2;
+                while(n > 0)
+                {
+                    string front = q.front();
+                    q.pop();
+                    q.push(front + "1");
+                    n--;
+                    if(n == 0)
+                    {
+                        break;
+                    }
+                    q.push(front + "2");
+                    n--;
+                }
+             //   cout << q.front() << endl;
+                while(q.size() != 1)
+                {
+                    q.pop();
+                }
+                cout << q.front() << endl;
+        }
+    }
+}
+tc o(n) sc o(n)
