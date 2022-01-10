@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string addBinary(string a, string b)
+    {
+        reverse(a.begin(), a.end());
+        reverse(b.begin(), b.end());
+        int carry = 0;
+        int i = 0, j = 0;
+        string ans = "";
+        while(i < a.size() || j < b.size())
+        {
+            int sum = 0;
+            if(i < a.size())
+            {
+                sum += (a[i] - '0');
+            }
+            if(j < b.size())
+            {
+                sum += (b[j] - '0');
+            }
+            sum += carry;
+            carry;
+            ans += ((sum % 2) + '0');
+            carry = sum / 2;
+            i++;
+            j++;
+        }
+        if(carry != 0)
+        {
+            ans += (carry + '0');
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
+tc o(n) sc o(1)
