@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int binaryToDecimal(vector<int>tmp)
+    {
+        int sum = 0, power = 1;
+        for(int i = tmp.size() - 1; i >= 0; i--)
+        {
+            sum += (tmp[i] * power);
+            power *= 2;
+        }
+        return sum;
+    }
+    void fun(TreeNode* root,  vector<int> tmp, int& sum)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        tmp.push_back(root->val);
+        if(root->left == NULL && root->right == NULL)
+        {
+            sum += binaryToDecimal(tmp);
+            return;
+        }
+        fun(root->left, tmp, sum);
+        fun(root->right, tmp, sum);
+    }
+    int sumRootToLeaf(TreeNode* root) 
+    {
+        if(root == NULL)
+        {
+            return 0;
+        }
+        int sum = 0;
+        vector<int>tmp;
+        fun(root, tmp, sum);
+        return sum;
+    }
+};
+tc(n) sc o(n)
