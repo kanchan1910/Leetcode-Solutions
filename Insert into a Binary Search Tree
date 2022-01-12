@@ -19,4 +19,4 @@ public:
         return root;
     }
 };
-tc o(n) sc o(h)
+tc o(h) sc o(h)
