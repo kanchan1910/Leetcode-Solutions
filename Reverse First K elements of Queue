@@ -1,0 +1,24 @@
+queue<int> modifyQueue(queue<int> q, int k)
+{
+    stack<int>s;
+    int rem = q.size() - k;
+    while(k > 0)
+    {
+        k--;
+        s.push(q.front());
+        q.pop();
+    }
+    while(s.size() > 0)
+    {
+        q.push(s.top());
+        s.pop();
+    }
+    while(rem--)
+    {
+        q.push(q.front());
+        q.pop();
+    }
+    return q;
+}
+tc o(n) 
+sc o(n)
