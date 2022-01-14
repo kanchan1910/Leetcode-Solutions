@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int myAtoi(string s) 
+    {
+        int n = s.length();
+        int i = 0;
+        int ans = 0;
+        bool neg = false;
+        // skip the spaces in the front
+        while(i < n && (s[i] == ' '))
+        {
+            i++;
+        }
+        // if the end of the string is reached
+        if(i == n)
+        {
+            return 0;
+        }
+        // possible cases :
+        // + sign, - sign, numeric digit, alphabet
+        if(s[i] == '-')
+        {
+            neg = true;
+            i++;
+        }
+        else if(s[i] == '+')
+        {
+            i++;
+        }
+        else if(s[i] < '0' || s[i] > '9')
+        {
+            return 0;
+        }
+        while(i < n && s[i] >= '0' && s[i] <= '9')
+        {
+            // INT_MIN = -2147483648
+            // INT_MAX = 2147483647
+            
+            if(ans > INT_MAX / 10 || (ans == INT_MAX / 10 && ((s[i] - '0') > 7)) || ans < INT_MIN / 10 || (ans == INT_MIN / 10 && (s[i] - '0') > 8)) 
+            {
+                    return neg == true ? INT_MIN : INT_MAX;
+            }
+            ans = (ans * 10) + (s[i] - '0');
+            i++;
+        }
+        return neg == true ? -ans : ans;
+    }
+};
+tc o(n)
+sc o(1)
