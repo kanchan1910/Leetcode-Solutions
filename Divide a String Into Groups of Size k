@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<string> divideString(string s, int k, char fill)
+    {
+        vector<string>ans;
+        int n = s.length();
+        int rem = n % k;
+        string tmp = "";
+        int count = 0;
+        int i;
+        for(i = 0; i < n - rem; i++)
+        {
+            count++;
+            tmp += s[i];
+            if(count == k)
+            {
+                ans.push_back(tmp);
+                tmp = "";
+                count = 0;
+            }
+        }
+        tmp = "";
+        for(int j = 0; j < rem; j++)
+        {
+            tmp += s[i];
+            i++;
+        }
+        if(rem != 0)
+        {
+            while(tmp.length() < k)
+            {
+                tmp += fill;
+            }
+            ans.push_back(tmp);
+        }
+        return ans;
+    }
+};
+tc o(n) 
+sc o(1)
