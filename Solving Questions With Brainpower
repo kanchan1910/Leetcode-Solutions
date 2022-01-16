@@ -1,0 +1,24 @@
+class Solution {
+public:
+    long long fun(vector<vector<int>>& questions, int index, int n, vector<long long>& dp)
+    {
+        if(index >= n)
+        {
+            return 0;
+        }
+        if(dp[index] != -1)
+        {
+            return dp[index];
+        }
+        return dp[index] = max(questions[index][0] + fun(questions, index + questions[index][1] + 1, n, dp), fun(questions, index + 1, n, dp));
+    }
+    long long mostPoints(vector<vector<int>>& questions) 
+    {
+        int n = questions.size();
+        int index = 0;
+        vector<long long>dp(n, -1);
+        return fun(questions, index, n, dp);
+    }
+};
+tc o(n)
+sc o(n)
