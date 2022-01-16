@@ -1,0 +1,54 @@
+int minStepToReachTarget(vector<int>&KnightPos,vector<int>&TargetPos,int N)
+	{
+	    int x1=KnightPos[0]-1;
+        int y1=KnightPos[1]-1;
+        int x2=TargetPos[0]-1;
+        int y2=TargetPos[1]-1;
+        vector<vector<int> > a(N, vector<int> (N,0));//distance vector
+        if(x1==x2&&y1==y2)
+              return 0;
+       queue<pair<int,int>>q;
+       q.push({x1,y1});
+       while(!q.empty()){
+           auto cur=q.front();
+           int i=cur.first;
+           int j=cur.second;
+           q.pop();
+           if((i+1)>=0 and (i+1)<N and (j+2)>=0 and (j+2)<N and a[i+1][j+2]==0 ){
+                    a[i+1][j+2]=a[i][j]+1;
+                    q.push({i+1,j+2});
+           }
+            if((i-1)>=0 and (i-1)<N and (j+2)>=0 and (j+2)<N and a[i-1][j+2]==0 ){
+                    a[i-1][j+2]=a[i][j]+1;
+                    q.push({i-1,j+2});
+           }
+            if((i-2)>=0 and (i-2)<N and (j+1)>=0 and (j+1)<N and a[i-2][j+1]==0 ){
+                    a[i-2][j+1]=a[i][j]+1;
+                    q.push({i-2,j+1});
+           }
+            if((i+2)>=0 and (i+2)<N and (j+1)>=0 and (j+1)<N and a[i+2][j+1]==0 ){
+                    a[i+2][j+1]=a[i][j]+1;
+                    q.push({i+2,j+1});
+           }
+            if((i-1)>=0 and (i-1)<N and (j-2)>=0 and (j-2)<N and a[i-1][j-2]==0 ){
+                    a[i-1][j-2]=a[i][j]+1;
+                    q.push({i-1,j-2});
+           }
+            if((i+1)>=0 and (i+1)<N and (j-2)>=0 and (j-2)<N and a[i+1][j-2]==0 ){
+                    a[i+1][j-2]=a[i][j]+1;
+                    q.push({i+1,j-2});
+           }
+            if((i-2)>=0 and (i-2)<N and (j-1)>=0 and (j-1)<N and a[i-2][j-1]==0 ){
+                    a[i-2][j-1]=a[i][j]+1;
+                    q.push({i-2,j-1});
+           }
+            if((i+2)>=0 and (i+2)<N and (j-1)>=0 and (j-1)<N and a[i+2][j-1]==0 ){
+                    a[i+2][j-1]=a[i][j]+1;
+                    q.push({i+2,j-1});
+           }
+           
+       }
+       
+      return a[x2][y2];     
+	}
+  tc o(n * n) sc o(n * n)
