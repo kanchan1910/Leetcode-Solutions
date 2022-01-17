@@ -1,0 +1,61 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) 
+    {
+        vector<string>tmp;
+        string str = "";
+        unordered_set<char>s1;
+        unordered_set<string>s2;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(s[i] == ' ')
+            {
+                tmp.push_back(str);
+                s2.insert(str);
+                str = "";
+            }
+            else
+            {
+                str += s[i];
+            }
+        }
+        tmp.push_back(str);
+        s2.insert(str);
+        /*
+        "aaa"
+        "aa aa aa aa"
+        */
+        if(tmp.size() != pattern.length())
+        {
+            return false;
+        }
+        int index = 0;
+        unordered_map<char, string>m;
+        for(int i = 0; i < pattern.length(); i++)
+        {
+            if(m.find(pattern[i]) == m.end())
+            {
+                m[pattern[i]] = tmp[index];
+            }
+            else
+            {
+                if(m[pattern[i]] != tmp[index])
+                {
+                    return false;
+                }
+            }
+            s1.insert(pattern[i]);
+            index++;
+        }
+        /*
+        "abba"
+        "dog dog dog dog"
+        */
+        if(s1.size() != s2.size())
+        {
+            return false;
+        }
+        return true;
+    }
+};
+sc o(n) tc o(n)
