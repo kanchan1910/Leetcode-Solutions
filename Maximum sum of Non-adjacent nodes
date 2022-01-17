@@ -1,0 +1,27 @@
+class Solution{
+  public:
+  pair<int, int>fun(Node* root)
+  {
+      if(root == NULL)
+      {
+          return {0, 0};
+      }
+      pair<int, int>left = fun(root->left);
+      pair<int, int>right = fun(root->right);
+      pair<int, int>sum;
+      //include
+      sum.first = root->data + left.second + right.second;
+      //exclude
+      sum.second = max(left.first, left.second) + max(right.first, right.second);
+      return sum;
+  }
+    //Function to return the maximum sum of non-adjacent nodes.
+    int getMaxSum(Node *root) 
+    {
+        // {including, excluding}
+        pair<int, int> ans = fun(root);
+        return max(ans.first, ans.second);
+    }
+};
+tc o(n) 
+sc o(h)
