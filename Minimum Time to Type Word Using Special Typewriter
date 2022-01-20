@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int minTimeToType(string word) 
+    {
+        int n = word.length();
+        int ans = 0;
+        char prev = 'a';
+        for(int i = 0; i < n; i++)
+        {
+            ans += min(abs(word[i] - prev), 26 - abs(word[i] - prev));
+            ans++;
+            prev = word[i];
+        }
+        return ans;
+    }
+};
+tc o(n) sc o(1)
