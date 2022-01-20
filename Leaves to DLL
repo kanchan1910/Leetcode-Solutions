@@ -1,0 +1,36 @@
+Node* fun(Node* root, Node* &head, Node* &prev)
+{
+    if(root == NULL)
+    {
+        return NULL;
+    }
+    if(root->left == NULL && root->right == NULL)
+    {
+        if(prev == NULL)
+        {
+            head = root;
+        }
+        else
+        {
+            root->left = prev;
+            prev->right = root;
+        }
+        prev = root;
+        return NULL;
+    }
+    root->left = fun(root->left, head, prev);
+    root->right = fun(root->right, head, prev);
+    return root;
+}
+Node * convertToDLL(Node *root)
+{
+    if(root == NULL)
+    {
+        return NULL;
+    }
+    Node* head = NULL;
+    Node* prev = NULL;
+    fun(root, head, prev);
+    return head;
+}
+tc o(n) sc o(h)
