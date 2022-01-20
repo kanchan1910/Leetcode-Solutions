@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isSameAfterReversals(int num)
+    {
+        string str = to_string(num);
+        if(str.length() == 1)
+        {
+            return true;
+        }
+        string ori = str;
+        reverse(str.begin(), str.end());
+        string rev = "";
+        int i = 0;
+        while(i < str.length() && str[i] == '0')
+        {
+            i++;
+        }
+        rev = str.substr(i);
+        string rev1 = rev;
+        reverse(rev1.begin(), rev1.end());
+        return ori == rev1;
+    }
+};
