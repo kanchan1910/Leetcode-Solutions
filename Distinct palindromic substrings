@@ -1,0 +1,36 @@
+int palindromeSubStrs(string s) {
+        int n = s.length();
+       unordered_set<char>st1;
+       unordered_set<string>st2;
+       bool dp[n][n] = {false};
+       // for length 1
+       for(int i = 0 ; i < n; i++)
+       {
+           dp[i][i] = true;
+           st1.insert(s[i]);
+       }
+        // for length 2
+       for(int i = 0 ; i < n - 1; i++)
+       {
+           if(s[i] == s[i + 1])
+           {
+               dp[i][i + 1] = true;
+                st2.insert(s.substr(i, 2));
+           }
+       }
+        // from length 3 to n
+        for(int len = 3 ; len <= n ; len++)
+        {
+            for(int start = 0 ; start + len - 1 < n; start++)
+            {
+                int end = start + len - 1;
+                if(s[start] == s[end] && dp[start + 1][end - 1] == true)
+                {
+                    dp[start][end] = true;
+                       st2.insert(s.substr(start, len));
+                       
+                }
+            }
+        }
+       return st1.size() + st2.size();
+    }
