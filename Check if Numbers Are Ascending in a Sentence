@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool areNumbersAscending(string s) 
+    {
+        int len = s.length();
+        int prev = INT_MIN;
+        string tmp = "";
+        for(int i = 0; i < len; i++)
+        {
+            if(s[i] == ' ')
+            {
+                if(tmp[0] >= '0' && tmp[0] <= '9')
+                {
+                    int num = stoi(tmp);
+                    if(num <= prev)
+                    {
+                        return false;
+                    }
+                    prev = num;
+                }
+                tmp = "";
+            }
+            else
+            {
+                tmp += s[i];
+            }
+        }
+        if(tmp[0] >= '0' && tmp[0] <= '9')
+        {
+            int num = stoi(tmp);
+            if(num <= prev)
+            {
+                return false;
+            }
+            prev = num;
+        }
+        return true;
+    }
+}; 
