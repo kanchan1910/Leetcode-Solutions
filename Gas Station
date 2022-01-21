@@ -1,0 +1,29 @@
+class Solution {
+public:
+    // refer https://youtu.be/7WYwqvOSaa8
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) 
+    {
+        int n = gas.size();
+        int ans_index = 0;
+        int extra_fuel = 0;
+        int required_fuel = 0;
+        for(int i = 0; i < n; i++)
+        {
+            extra_fuel += (gas[i] - cost[i]);
+            
+            if(extra_fuel < 0)
+            {
+                required_fuel += extra_fuel;
+                ans_index = i + 1;
+                extra_fuel = 0;
+            }
+        }
+        if(extra_fuel + required_fuel >= 0)
+        {
+            return ans_index;
+        }
+        return -1;
+    }
+};
+tc o(n)
+sc o(1)
