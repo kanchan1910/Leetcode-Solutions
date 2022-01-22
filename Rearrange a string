@@ -1,0 +1,19 @@
+ string arrangeString(string str)
+    {
+        string ans = "";
+        int sum = 0;
+        for(int i = 0; i < str.length(); i++)
+        {
+            if(str[i] >= '0' && str[i] <= '9')
+            {
+                sum += (str[i] - '0');
+            }
+            else
+            {
+                ans += str[i];
+            }
+        }
+        sort(ans.begin(), ans.end());
+        ans += to_string(sum);
+        return ans;
+    }
