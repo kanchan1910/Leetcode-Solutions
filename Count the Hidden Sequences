@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int numberOfArrays(vector<int>& d, int lower, int upper) 
+    {  
+        int n = d.size();
+        if(lower == upper)
+        {
+            // flat curve
+            for(auto x: d)
+            {
+                if(x != 0)
+                {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        int sum = 0;
+        int low = 0, high = 0;
+        for(int i = 0; i < n; i++)
+        {
+            sum += d[i];
+            low = min(sum, low);
+            high = max(sum, high);
+        }
+        int gap = lower - low;
+        high += gap;
+        if(high > upper)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 + upper - high;
+        }
+    }
+};
+tc o(n) sc o(1)
