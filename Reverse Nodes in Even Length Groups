@@ -1,0 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    
+    ListNode* reverseEvenLengthGroups(ListNode* head)
+    {
+        int num = 1;
+        ListNode* cur = head;
+        while(cur != NULL)
+        {
+            int count = 0;
+            ListNode* tmp = cur;
+            stack<int>s;
+            
+            // because of the last group which can be either even or odd, we are also writing cur != NULL
+            while(count != num && cur != NULL)
+            {
+                count++;
+                s.push(cur->val);
+                cur = cur->next;
+            }
+            // because of the last group which can be either even or odd, we are taking count % 2 and not num % 2
+            if(count % 2 == 0)
+            {
+                while(tmp != cur)
+                {
+                    tmp->val = s.top();
+                    s.pop();
+                    tmp = tmp->next;
+                }
+            }
+            num++;
+        }
+        return head;
+    }
+};
+tc o(approx n)
+sc o(n)
