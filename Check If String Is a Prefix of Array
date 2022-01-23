@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isPrefixString(string s, vector<string>& words) 
+    {
+        string ans = "";
+        int i = 0;
+        while(ans != s && i < words.size())
+        {
+            if(s.find(words[i]) == string :: npos)
+            {
+                return false;
+            }
+            ans += words[i];
+            i++;
+        }
+        /*
+        Input:
+        "ccccccccc"
+        ["c","cc"]
+        Output:
+        true
+        Expected:
+        false
+        */
+        return ans == s ? true : false;
+    }
+};
