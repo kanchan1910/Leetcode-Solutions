@@ -34,7 +34,7 @@ public:
         {
             sum += weights[i];
         }
-        int l = 0, r = sum;
+        int l = *min_element(weights.begin(), weights.end()), r = sum;
         int ans = INT_MAX;
         while(l <= r)
         {
