@@ -1,0 +1,23 @@
+void inorder(Node* root, int& f)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    inorder(root->left, f);
+    if(!(root->left == NULL && root->right == NULL))
+    {
+        if(root->left == NULL || root->right == NULL)
+        {
+            f = 1;
+            return;
+        }
+    }
+    inorder(root->right, f);
+}
+bool isFullTree (struct Node* root)
+{
+    int f = 0;
+    inorder(root, f);
+    return f == 0 ? true : false;
+}
