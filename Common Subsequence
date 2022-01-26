@@ -1,0 +1,16 @@
+bool commonSubseq (string a, string b)
+	{
+	    vector<int>fre(26, -1);
+	    for(int i = 0; i < a.length(); i++)
+	    {
+	        fre[a[i] - 'A'] = 1;
+	    }
+	    for(int i = 0; i < b.length(); i++)
+	    {
+	        if(fre[b[i] - 'A'] == 1)
+	        {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
