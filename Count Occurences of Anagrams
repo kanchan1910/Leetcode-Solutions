@@ -1,0 +1,41 @@
+class Solution{
+public:
+    bool check(vector<int> fre1, vector<int> fre2)
+    {
+        for(int i = 0; i < 26; i++)
+        {
+            if(fre1[i] != fre2[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+	int search(string pat, string txt) 
+	{
+	    int n = pat.length();
+	    int m = txt.length();
+	    vector<int>fre1(26, 0);
+	    vector<int>fre2(26, 0);
+	    for(int i = 0; i < n; i++)
+	    {
+	        fre1[pat[i] - 'a']++;
+	        fre2[txt[i] - 'a']++;
+	    }
+	    int ans = 0;
+	    if(check(fre1, fre2) == true)
+	    {
+	        ans++;
+	    }
+	    for(int i = n; i < m; i++)
+	    {
+	        fre2[txt[i] - 'a']++;
+	        fre2[txt[i - n] - 'a']--;
+	        if(check(fre1, fre2) == true)
+	        {
+	            ans++;
+	        }
+	    }
+	    return ans;
+	}
+};
