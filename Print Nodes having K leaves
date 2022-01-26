@@ -1,0 +1,33 @@
+class Solution{
+  public:
+    /*You are required to complete below method */
+    int fun(Node* root, int& k, vector<int>& ans)
+    {
+        if(root == NULL)
+        {
+            return 0;
+        }
+        if(root->left == NULL && root->right == NULL)
+        {
+            return 1;
+        }
+        int left = fun(root->left, k, ans);
+        int right = fun(root->right, k, ans);
+        if(left + right == k)
+        {
+            ans.push_back(root->data);
+        }
+        return left + right;
+    }
+    vector<int> btWithKleaves(Node *ptr, int k)
+    { 
+        vector<int>ans;
+        fun(ptr, k, ans);
+        if(ans.empty())
+        {
+            ans.push_back(-1);
+        }
+        return ans;
+    }
+
+};
