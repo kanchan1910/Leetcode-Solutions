@@ -1,0 +1,19 @@
+void inorder(Node* root, int& sum)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    inorder(root->left, sum);
+    if(root->left == NULL && root->right == NULL)
+    {
+        sum += root->data;
+    }
+    inorder(root->right, sum);
+}
+/*You are required to complete below method */
+int sumOfLeafNodes(Node *root){
+    int sum = 0;
+    inorder(root, sum);
+    return sum;
+}
