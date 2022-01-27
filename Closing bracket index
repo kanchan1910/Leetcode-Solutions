@@ -1,0 +1,24 @@
+int closing (string s, int pos)
+        {
+        	//code here.
+        	stack<pair<char, int>>ss;
+        	for(int i = 0; i < s.length(); i++)
+        	{
+        	    if(s[i] == '[')
+        	    {
+        	        ss.push({s[i], i});
+        	    }
+        	    else if(s[i] == ']')
+        	    {
+        	         if(!ss.empty())
+        	         {
+        	             if(ss.top().second == pos)
+        	             {
+        	                 return i;
+        	             }
+        	             ss.pop();
+        	         }
+        	    }
+        	}
+        	return -1;
+        }
