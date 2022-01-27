@@ -1,0 +1,18 @@
+string printMinIndexChar(string S, string patt)	
+	{
+	    unordered_set<char>ss;
+	    for(int i = 0; i < patt.length(); i++)
+	    {
+	        ss.insert(patt[i]);
+	    }
+	    string ans = "";
+	    for(int i  = 0; i < S.length(); i++)
+	    {
+	        if(ss.find(S[i]) != ss.end())
+	        {
+	            ans += S[i];
+	            break;
+	        }
+	    }
+	    return ans.empty() ? "$" : ans;
+	}
