@@ -1,0 +1,14 @@
+string removeDups(string s) 
+	{
+	   string ans = "";
+	   unordered_set<char>ss;
+	   for(int i = 0; i < s.length(); i++)
+	   {
+	       if(ss.find(s[i]) == ss.end())
+	       {
+	           ans += s[i];
+	           ss.insert(s[i]);
+	       }
+	   }
+	   return ans;
+	}
