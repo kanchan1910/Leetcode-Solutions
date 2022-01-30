@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<int> maxScoreIndices(vector<int>& nums)
+    {
+        int n = nums.size();
+        vector<int>left(n, 0);
+        vector<int>right(n, 0);
+        left[0] = nums[0] == 0 ? 1 : 0;
+        for(int i = 1; i < n; i++)
+        {
+            left[i] = nums[i] == 0 ? 1 : 0;
+            left[i] += left[i - 1];
+        }
+        right[n - 1] = nums[n - 1] == 1 ? 1 : 0;
+        for(int i = n - 2; i >= 0; i--)
+        {
+            right[i] = nums[i] == 1 ? 1 : 0;
+            right[i] += right[i + 1];
+        }
+        vector<int>ans;
+        vector<pair<int, int>>tmp;
+        for(int i = 0; i < n; i++)
+        {
+            if(i == 0)
+            {
+                tmp.push_back({right[i], i});
+            }
+            else
+            {
+                tmp.push_back({left[i - 1] + right[i], i});
+            }
+        }
+        // for index = n;
+        tmp.push_back({left[n - 1], n});
+        sort(tmp.begin(), tmp.end(), greater<pair<int, int>>());
+        int maxi = tmp[0].first;
+        int index = 0;
+        while(index < tmp.size() && maxi == tmp[index].first)
+        {
+            ans.push_back(tmp[index].second);
+            index++;
+        }
+        return ans;
+    }
+};
