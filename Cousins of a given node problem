@@ -1,0 +1,79 @@
+class Solution
+{
+    public:
+    vector<int> printCousins(Node* root, Node* node_to_find)
+    {
+        vector<int>ans;
+        if(node_to_find == root)
+        {
+            return {-1};
+        }
+        // node, parent
+        unordered_map<Node*, Node*>m;
+        queue<Node*>q;
+        q.push(root);
+        while(!q.empty())
+        {
+            Node* front = q.front();
+            q.pop();
+            if(front->left != NULL)
+            {
+                q.push(front->left);
+                m[front->left] = front;
+            }
+            if(front->right != NULL)
+            {
+                q.push(front->right);
+                m[front->right] = front;
+            }
+        }
+        q.push(root);
+        vector<Node*>tmp;
+        while(!q.empty())
+        {
+            int f = 0;
+            int sz = q.size();
+            for(int i = 0; i < sz; i++)
+            {
+                Node* front = q.front();
+                q.pop();
+                if(front->left != NULL)
+                {
+                    q.push(front->left);
+                    tmp.push_back(front->left);
+                    if(front->left == node_to_find)
+                    {
+                        f = 1;
+                    }
+                }
+                if(front->right != NULL)
+                {
+                    q.push(front->right);
+                    tmp.push_back(front->right);
+                    if(front->right == node_to_find)
+                    {
+                        f = 1;
+                    }
+                }
+            }
+            if(f == 1)
+            {
+                break;
+            }
+            tmp.clear();
+        }
+        for(int i = 0; i < tmp.size(); i++)
+        {
+            if(m[node_to_find] != m[tmp[i]])
+            {
+                ans.push_back(tmp[i]->data);
+            }
+        }
+        if(ans.empty())
+        {
+            ans.push_back(-1);
+        }
+        return ans;
+    }
+    
+};
