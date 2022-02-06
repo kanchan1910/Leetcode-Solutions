@@ -1,0 +1,43 @@
+class Solution {
+public:
+    long long smallestNumber(long long num)
+    {
+        string str = to_string(num);
+        string zero = "";
+        if(num == 0)
+        {
+            return num;
+        }
+        bool neg = str[0] == '-' ? true : false;
+        if(neg == true)
+        {
+            str.erase(0, 1);
+        }
+        for(int i = 0; i < str.length(); i++)
+        {
+            if(str[i] == '0')
+            {
+                zero += "0";
+            }
+        }
+        sort(str.begin(), str.end());
+        if(neg == true)
+        {
+            reverse(str.begin(), str.end());
+        }
+        if(neg == false)
+        {
+            str.erase(0, zero.length());
+        }
+        if(zero != "" && neg == false)
+        {
+            str.insert(1, zero);
+        }
+        long long ans = 0;
+        for(int i = 0; i < str.length(); i++)
+        {
+            ans = ans * 10 + (str[i] - '0');
+        }
+        return neg == true ? -ans : ans;
+    }
+};
