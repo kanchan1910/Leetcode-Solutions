@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int minimumSum(int num) 
+    {
+        string str = to_string(num);
+        sort(str.begin(), str.end());
+        int sum1 = str[0] - '0';
+        sum1 = sum1 * 10 + (str[2] - '0');
+        int sum2 = str[1] - '0';
+        sum2 = sum2 * 10 + (str[3] - '0');
+        return sum1 + sum2;
+    }
+};
