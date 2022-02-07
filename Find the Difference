@@ -1,0 +1,23 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) 
+    {
+        vector<int>fre(26, 0);
+        for(int i = 0; i < t.length(); i++)
+        {
+            fre[t[i] - 'a']++;
+        }
+        for(int i = 0; i < s.length(); i++)
+        {
+            fre[s[i] - 'a']--;
+        }
+        for(int i = 0; i < 26; i++)
+        {
+            if(fre[i] > 0)
+            {
+                return i + 'a';
+            }
+        }
+        return 'a';
+    }
+}; 
