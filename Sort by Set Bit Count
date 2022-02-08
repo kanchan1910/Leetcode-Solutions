@@ -1,0 +1,28 @@
+static bool com(pair<int, int>& a, pair<int, int> & b)
+    {
+        if(a.first == b.first)
+        {
+            return a.second < b.second;
+        }
+        return a.first > b.first;
+    }
+    void sortBySetBitCount(int arr[], int n)
+    {
+        // Your code goes here
+        vector<pair<int, int>>ans;
+        for(int i = 0; i < n; i++)
+        {
+            ans.push_back({__builtin_popcount(arr[i]), i});
+        }
+        
+        sort(ans.begin(), ans.end(), com);
+        vector<int>anss;
+        for(int i = 0; i < n; i++)
+        {
+            anss.push_back(arr[ans[i].second]);
+        }
+        for(int i = 0; i < n; i++)
+        {
+            arr[i] = anss[i];
+        }
+    }
