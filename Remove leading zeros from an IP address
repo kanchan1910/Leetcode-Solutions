@@ -1,0 +1,32 @@
+string removeLeadingZeros(string& str)
+    {
+        int i = 0;
+        while(i < str.length() && str[i] == '0')
+        {
+            i++;
+        }
+        if(i == str.length())
+        {
+            return "0";
+        }
+        return str.substr(i);
+    }
+    string newIPAdd (string s)
+    {
+        string ans = "";
+        int i = 0;
+        while(i < s.length())
+        {
+            string tmp = "";
+            while(i < s.length() && s[i] != '.')
+            {
+                tmp += s[i];
+                i++;
+            }
+            ans += removeLeadingZeros(tmp);
+            ans += ".";
+            i++;
+        }
+        ans.pop_back();
+        return ans;
+    }
