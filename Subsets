@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void fun(vector<int>& nums, int n, vector<vector<int>>& ans, vector<int>tmp, int index)
+    {
+        if(index == n)
+        {
+            ans.push_back(tmp);
+            return;
+        }
+        vector<int>tmp1 = tmp;
+        vector<int>tmp2 = tmp;
+        tmp2.push_back(nums[index]);
+        fun(nums, n, ans, tmp1, index + 1);
+        fun(nums, n, ans, tmp2, index + 1);
+    }
+    vector<vector<int>> subsets(vector<int>& nums)
+    {
+        int n = nums.size();
+        vector<vector<int>>ans;
+        vector<int>tmp;
+        fun(nums, n, ans, tmp, 0);
+        return ans;
+    }
+};
+
+
+// 1 2 3
+    
+//     []  [1]
+// [] [2]  [1] [1,2]
+// [] [3] [2] [2,3] [1] [1,3] [1,2] [1,2,3]
+// [] [1] [2] [3] [1,3] [1,2] [2,3] [1,2,3]
