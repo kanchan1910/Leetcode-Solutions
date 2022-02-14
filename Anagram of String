@@ -1,0 +1,22 @@
+int remAnagram(string str1, string str2)
+{
+    vector<int>fre(26, 0);
+    for(int i = 0; i < str1.length(); i++)
+    {
+        fre[str1[i] - 'a']++;
+    }
+    for(int i = 0; i < str2.length(); i++)
+    {
+        fre[str2[i] - 'a']--;
+    }
+    int ans = 0;
+    // this case is also considered str1 : abc , str2 : def
+    for(int i = 0; i < 26; i++)
+    {
+        if(fre[i] != 0)
+        {
+            ans += abs(fre[i]);
+        }
+    }
+    return ans;
+}
