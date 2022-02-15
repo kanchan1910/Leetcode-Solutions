@@ -1,0 +1,28 @@
+bool ValidCorner(const vector<vector<int> >& matrix)
+    {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                if(matrix[i][j] == 1)
+                {
+                    for(int k = i + 1; k < n; k++)
+                    {
+                        if(matrix[k][j] == 1)
+                        {
+                            for(int l = j + 1; l < m; l++)
+                            {
+                                if(matrix[i][l] == 1 && matrix[k][l] == 1)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
