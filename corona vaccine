@@ -1,0 +1,30 @@
+void fun(Node* root, int &ans, unordered_map<Node*, bool>& m, Node* par)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        fun(root->left, ans, m, root);
+        fun(root->right, ans, m, root);
+        if(m.find(root->left) == m.end() || m.find(root->right) == m.end() || par == NULL && m.find(root) == m.end())
+        {
+            m[root->left] = true;
+            m[root->right] = true;
+            m[root] = true;
+            m[par] = true;
+            ans++;
+            return;
+        }
+    }
+    int supplyVaccine(Node* root)
+    {
+        if(root->left == NULL && root->right == NULL)
+        {
+            return 1;
+        }
+        unordered_map<Node*, bool>m;
+        int ans = 0;
+        m[NULL] = true;
+        fun(root, ans, m, NULL);
+        return ans;
+    }
