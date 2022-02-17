@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void fun(vector<int>& arr, int n, int target, int index, vector<vector<int>>& ans, vector<int>& tmp)
+    {
+        if(index == n)
+        {
+            if(target == 0)
+            {
+                ans.push_back(tmp);
+            }
+            return;
+        }
+        // pick
+        if(arr[index] <= target)
+        {
+            tmp.push_back(arr[index]);
+            fun(arr, n, target - arr[index], index, ans, tmp);
+            tmp.pop_back();
+        }
+        // not pick
+        fun(arr, n, target, index + 1, ans, tmp);
+    }
+    vector<vector<int>> combinationSum(vector<int>& arr, int target) 
+    {
+        int n = arr.size();
+        vector<int>tmp;
+        vector<vector<int>>ans;
+        fun(arr, n, target, 0, ans, tmp);
+        return ans;
+    }
+};
