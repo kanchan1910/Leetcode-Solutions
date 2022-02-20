@@ -1,0 +1,27 @@
+class Solution {
+public:
+    static bool comp(vector<int>& a, vector<int>& b)
+    {
+        return a[0] == b[0] ? a[1] > b[1] : a[0] < b[0];
+    }
+    int removeCoveredIntervals(vector<vector<int>>& in)
+    {
+        int n = in.size();
+        int remove = 0;
+        sort(in.begin(), in.end(), comp);
+        int e = in[0][1];
+        for(int i = 1; i < n; i++)
+        {
+            if(in[i][1] <= e)
+            {
+                remove++;
+            }
+            else
+            {
+                e = in[i][1];
+            }
+        }
+        
+        return (n - remove);
+    }
+};
