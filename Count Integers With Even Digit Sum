@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int digitSum(int num)
+    {
+        string str = to_string(num);
+        int sum = 0;
+        for(int i = 0; i < str.length(); i++)
+        {
+            sum += (str[i] - '0')
+        }
+        return sum;
+    }
+    int countEven(int num) 
+    {
+        int ans = 0;
+        for(int i = 1; i <= n; i++)
+        {
+            if(digitSum(i) % 2 == 0)
+            {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
