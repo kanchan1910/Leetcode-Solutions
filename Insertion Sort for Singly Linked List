@@ -1,0 +1,22 @@
+Node* insertionSort(struct Node* head)
+    {
+        Node* tmp1 = head;
+        Node* tmp2 = head;
+        Node* min = head;
+        while(tmp1 != NULL)
+        {
+            min = tmp1;
+            tmp2 = tmp1;
+            while(tmp2 != NULL)
+            {
+                if(tmp2->data < min->data)
+                {
+                    min = tmp2;
+                }
+                tmp2 = tmp2->next;
+            }
+            swap(min->data, tmp1->data);
+            tmp1 = tmp1->next;
+        }
+        return head;
+    }
