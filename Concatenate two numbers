@@ -1,0 +1,23 @@
+long long countPairs(int N, int X, vector<int> numbers){
+        unordered_map<string, int>m;
+        for(int i = 0; i < N; i++)
+        {
+            m[to_string(numbers[i])]++;
+        }
+        long long ans = 0;
+        string target = to_string(X);
+        for(int i = 0; i < target.length(); i++)
+        {
+            string s1 = target.substr(0, i);
+            string s2 = target.substr(i);
+            if(s1 == s2)
+            {
+                ans += ((long long) m[s1] * (long long) (m[s1] - 1));
+            }
+            else
+            {
+                ans += ((long long) m[s1] * (long long) m[s2]);
+            }
+        }
+        return ans;
+    } 
