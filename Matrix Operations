@@ -1,0 +1,26 @@
+pair<int,int> endPoints(vector<vector<int>> m){
+        
+       int c = m[0].size();
+       int r = m.size();
+       char d = 'r';
+       
+       int i=0,j=0;
+       while(i<r && j<c && i>=0 && j>=0)
+       {
+           if(m[i][j]==0 && d=='r') j++;
+           else if(m[i][j]==0 && d=='l') j--;
+           else if(m[i][j]==0 && d=='u') i--;
+           else if(m[i][j]==0 && d=='d') i++;
+           else if(m[i][j]==1 && d=='d') { m[i][j]=0; j--; d='l';}
+           else if(m[i][j]==1 && d=='r') { m[i][j]=0; i++; d='d';}
+           else if(m[i][j]==1 && d=='u') { m[i][j]=0; j++; d='r';}
+           else if(m[i][j]==1 && d=='l') { m[i][j]=0; i--; d='u';}
+       }
+   
+       if(i>=r) i--;
+       if(j>=c) j--;
+       if(i<0) i++;
+       if(j<0) j++;
+       
+       return {i, j}; 
+    }
