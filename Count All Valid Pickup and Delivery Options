@@ -1,0 +1,16 @@
+// https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/discuss/1823403/C%2B%2B-oror-Easy-To-Understand-oror-Full-Explanation-oror-Coimbanotrics
+class Solution {
+public:
+    int countOrders(int n) 
+    {
+        long ans = 1;
+        for(int i = 1; i <= n; i++)
+        {
+            ans *= i;
+            ans %= 1000000007;
+            ans *= (2 * i - 1);
+            ans %= 1000000007;
+        }
+        return ans % 1000000007;
+    }
+};
