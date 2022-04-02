@@ -1,0 +1,35 @@
+void moveZeroes(struct Node **head)
+{
+   int count = 0;
+   Node* cur = *head;
+   string tmp = "";
+   while(cur != NULL)
+   {
+       if(cur->data == 0)
+       {
+           count++;
+       }
+       else
+       {
+           tmp += cur->data + '0';
+       }
+       cur = cur->next;
+   }
+   int index = 0;
+   cur = *head;
+   while(cur != NULL)
+   {
+       if(count > 0)
+       {
+           cur->data = 0;
+           count--;
+       }
+       else
+       {
+           cur->data = tmp[index] - '0';
+           index++;
+       }
+       cur = cur->next;
+   }
+   
+}
