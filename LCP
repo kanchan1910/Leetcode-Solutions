@@ -1,0 +1,27 @@
+class Solution{
+public:
+    string fun(string str1, string str2)
+    {
+        string ans = "";
+        int i = 0, j = 0;
+        while(i < str1.length() && j < str2.length())
+        {
+            if(str1[i] != str2[j])
+            {
+                return ans;
+            }
+            ans += str1[i];
+            i++, j++;
+        }
+        return ans;
+    }
+    string LCP(string ar[], int n)
+    {
+        string ans = ar[0];
+        for(int i = 1; i < n; i++)
+        {
+            ans = fun(ans, ar[i]);
+        }
+        return ans == "" ? "-1" : ans;
+    }
+};
