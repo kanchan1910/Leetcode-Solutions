@@ -1,0 +1,36 @@
+	int fun(vector<int>& nums, int amount, int n, vector<vector<int>>&dp, int index)
+	{
+	    if(index >= n)
+	    {
+	        return 100000;
+	    }
+	    if(amount == 0)
+	    {
+	        return 0;
+	    }
+	    if(dp[index][amount] != -1)
+	    {
+	        return dp[index][amount];
+	    }
+	    if(nums[index] <= amount)
+	    {
+	        return dp[index][amount] = min(fun(nums, amount, n, dp, index + 1), 1 + fun(nums, amount - nums[index], n, dp, index));
+	    }
+	    return dp[index][amount] = fun(nums, amount, n, dp, index + 1);
+	}
+	int MinCoin(vector<int>nums, int amount)
+	{
+	    // Code here
+	    if(amount  == 0)
+	    {
+	        return 0;
+	    }
+	    int n = nums.size();
+	    vector<vector<int>>dp(n, vector<int>(amount + 1, -1));
+	    int ans = fun(nums, amount, n, dp, 0);
+	    if(ans == 100000)
+	    {
+	        return -1;
+	    }
+	    return ans;
+	}
