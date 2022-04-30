@@ -1,0 +1,21 @@
+vector<int>SolveQueris(string str, vector<vector<int>>Query)
+	{
+	    vector<int>ans;
+	    int n = str.length();
+	    for(int i = 0; i < Query.size(); i++)
+	    {
+	        unordered_set<char>s;
+	        for(int j = Query[i][0]; j <= Query[i][1]; j++)
+	        {
+	            s.insert(str[j - 1]);
+	        }
+	        ans.push_back(s.size());
+	    }
+	    return ans;
+	}
+  tc o(Query.size() * str.length())
+  sc o(str.length())
+  
+  =======================  =======================  =======================  =======================  =======================  =======================  =======================
+  
+  
