@@ -1,0 +1,37 @@
+void seive_of_erathosthene(int n, int &super_primes)
+	{
+	    bool prime[n + 1];
+	    memset(prime, true, sizeof(prime));
+	    for(int i = 2; i <= sqrt(n); i++)
+	    {
+	        if(prime[i] == true)
+	        {
+	            for(int j = i * i; j <= n; j += i)
+	            {
+	                prime[j] = false;
+	            }
+	        }
+	    }
+	    
+	    // for finding super primes
+	    for(int i = 5; i <= n; i++)
+	    {
+	        if(prime[i] == true)
+	        {
+	            if(prime[i - 2] == true)
+	            {
+	                super_primes++;
+	            }
+	        }
+	    }
+	}
+	int superPrimes(int n)
+	{
+	    if(n < 5)
+	    {
+	        return 0;
+	    }
+	    int super_primes = 0;
+	    seive_of_erathosthene(n, super_primes);
+	    return super_primes;
+	}
