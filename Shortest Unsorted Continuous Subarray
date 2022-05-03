@@ -1,0 +1,34 @@
+ int findUnsortedSubarray(vector<int>& nums) 
+    {
+        int n = nums.size();
+        int s = -1, e = -1;
+        if(n == 1)
+        {
+            return 0;
+        }
+        int last = nums[n - 1];
+        for(int i = n - 2; i >= 0; i--)
+        {
+            if(last < nums[i])
+            {
+                s = i;
+            }
+            else
+            {
+                last = nums[i];
+            }
+        }
+        int first = nums[0];
+        for(int i = 1; i < n; i++)
+        {
+            if(first > nums[i])
+            {
+                e = i;
+            }
+            else
+            {
+                first = nums[i];
+            }
+        }
+        return s == -1 ? 0 : e - s + 1;
+    }
