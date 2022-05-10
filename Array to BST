@@ -1,0 +1,18 @@
+    void preorder(vector<int>& ans, vector<int>& nums, int n, int l, int r)
+    {
+        if(r < l)
+        {
+            return;
+        }
+        int mid = (l + r) / 2;
+        ans.push_back(nums[mid]);
+        preorder(ans, nums, n, l, mid - 1);
+        preorder(ans, nums, n, mid + 1, r);
+    }
+    vector<int> sortedArrayToBST(vector<int>& nums) {
+        // Code here
+        int n = nums.size();
+        vector<int>ans;
+        preorder(ans, nums, n, 0, n - 1);
+        return ans;
+    }
