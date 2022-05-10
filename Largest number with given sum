@@ -1,0 +1,15 @@
+string largestNumber(int n, int sum)
+    {
+        if(sum > n * 9)
+        {
+            return "-1";
+        }
+        string ans = "";
+        while(n-- && sum >= 0)
+        {
+            int value = min(9, sum);
+            ans += to_string(value);
+            sum -= value;
+        }
+        return ans;
+    }
