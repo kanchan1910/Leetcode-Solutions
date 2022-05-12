@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void fun(vector<int> nums, vector<vector<int>>&ans, int n, int index)
+    {
+        if(index == n)
+        {
+            ans.push_back(nums);
+            return;
+        }
+        for(int i = index; i < n; i++)
+        {
+            if(i != index && nums[i] == nums[index])
+            {
+                continue;
+            }
+            swap(nums[i], nums[index]);
+            fun(nums, ans, n, index + 1);
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) 
+    {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>>ans;
+        int n = nums.size();
+        fun(nums, ans, n, 0);
+        return ans;
+    }
+};
