@@ -1,0 +1,36 @@
+
+class Solution
+{
+    public:
+    bool dfs(vector<vector<int>>& grid, int n, int m, int i, int j, vector<vector<bool>>& vis)
+    {
+        if(i < 0 || j < 0 | i >= n || j >= m || vis[i][j] == true || grid[i][j] == 0)
+        {
+            return false;
+        }
+        if(grid[i][j] == 2)
+        {
+            return true;
+        }
+        vis[i][j] = true;
+        return dfs(grid, n, m, i, j - 1, vis) || dfs(grid, n, m, i, j + 1, vis) || dfs(grid, n, m, i - 1, j, vis) || dfs(grid, n, m, i + 1, j, vis); 
+    }
+    //Function to find whether a path exists from the source to destination.
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<bool>>vis(n, vector<bool>(m, false));
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                if(grid[i][j] == 1)
+                {
+                    return dfs(grid, n, m, i, j, vis);
+                }
+            }
+        }
+        return false;
+    }
+};
