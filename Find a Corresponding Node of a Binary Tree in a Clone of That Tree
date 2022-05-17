@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void inorder(TreeNode* original, TreeNode* cloned, unordered_map<TreeNode*, TreeNode*>& m)
+    {
+        if(original == NULL || cloned == NULL)
+        {
+            return;
+        }
+        inorder(original->left, cloned->left, m);
+        m[original] = cloned;
+        inorder(original->right, cloned->right, m);
+    }
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) 
+    {
+        unordered_map<TreeNode*, TreeNode*>m;
+        inorder(original, cloned, m);
+        return m[target];
+    }
+};
