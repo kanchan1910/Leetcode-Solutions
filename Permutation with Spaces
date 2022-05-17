@@ -1,0 +1,23 @@
+void fun(string s, string tmp, vector<string>& ans, int index)
+    {
+        if(index == s.length())
+        {
+            ans.push_back(tmp);
+            return;
+        }
+        tmp += s[index];
+        
+        // leave a space
+        if(index + 1 != s.length())
+        {
+            fun(s, tmp + " ", ans, index + 1);
+        }
+        // not leaving space
+        fun(s, tmp, ans, index + 1);
+    }
+    vector<string> permutation(string s){
+        // Code Here
+        vector<string>ans;
+        fun(s, "", ans, 0);
+        return ans;
+    }
