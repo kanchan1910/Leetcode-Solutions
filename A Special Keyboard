@@ -1,0 +1,16 @@
+ int findTime(string S1, string S2) 
+    {
+        unordered_map<char, int>m;
+        for(int i = 0; i < S1.length(); i++)
+        {
+            m[S1[i]] = i;
+        }
+        int ans = m[S2[0]];
+        int index = m[S2[0]];
+        for(int i = 1; i < S2.length(); i++)
+        {
+            ans += (abs(m[S2[i]]- index));
+            index = m[S2[i]];
+        }
+        return ans;
+    }
