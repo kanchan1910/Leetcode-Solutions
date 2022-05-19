@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int fun(vector<vector<int>>& arr, int n, int m, int i, int j, int parent, vector<vector<int>>& dp)
+    {
+        if(i < 0 || j < 0 || i >= n || j >= m || arr[i][j] <= parent)
+        {
+            return 0;
+        }
+        if(dp[i][j] != -1)
+        {
+            return dp[i][j];
+        }
+        return dp[i][j] = 1 + max({
+           fun(arr, n, m, i + 1, j, arr[i][j], dp), fun(arr, n, m, i - 1, j, arr[i][j], dp), fun(arr, n, m, i, j - 1, arr[i][j], dp), fun(arr, n, m, i, j + 1, arr[i][j], dp)
+        });
+    }
+    int longestIncreasingPath(vector<vector<int>>& arr) 
+    {
+        int n = arr.size();
+        int m = arr[0].size();
+        vector<vector<int>>dp(n, vector<int>(m, -1));
+        int ans = 0;
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                ans = max(ans, fun(arr, n, m, i, j, -1, dp));
+            }
+        }
+        return ans;
+    }
+};
