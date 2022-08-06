@@ -1,0 +1,46 @@
+class Solution {
+public:
+    string findReplaceString(string s, vector<int>& indices, vector<string>& sources, vector<string>& targets) {
+        
+        /*
+        "   vmokgggqzp"
+            [3,5,1]
+            ["kg","ggq","mo"]
+            ["s","so","bfr"]
+            
+            This input was good
+        */
+        string ans = "";
+ 
+        vector<pair<int, int>>v;
+        
+        for(int i = 0; i < indices.size(); i++)
+        {
+            v.push_back({indices[i], i});
+        }
+        sort(v.begin(), v.end());
+        
+        int iindex = 0;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(iindex < indices.size() && i == v[iindex].first)
+            {
+                if(s.substr(i, sources[v[iindex].second].length()) == sources[v[iindex].second])
+                {
+                    ans += targets[v[iindex].second];
+                    i += (sources[v[iindex].second].length() - 1);
+                }
+                else
+                {
+                    ans += s[i];
+                }
+                iindex++;
+            }
+            else
+            {
+                ans += s[i];
+            }
+        }
+        return ans;
+    }
+};
