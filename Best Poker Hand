@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string bestHand(vector<int>& ranks, vector<char>& suits) 
+    {
+        int total_suits = 1;
+        for(int i = 1; i < suits.size(); i++)
+        {
+            if(suits[i] == suits[i - 1])
+            {
+                total_suits++;
+            }
+        }
+        if(total_suits == suits.size())
+        {
+            return "Flush";
+        }
+        unordered_map<int, int>m;
+        for(int i = 0; i < ranks.size(); i++)
+        {
+            m[ranks[i]]++;
+        }
+        bool two = false;
+        for(auto x: m)
+        {
+            if(x.second  == 3)
+            {
+                return "Three of a Kind";
+            }
+            if(x.second == 2)
+            {
+                two = true;
+            }
+        }
+        if(two == true)
+        {
+            return "Pair";
+        }
+        return "High Card";
+    }
+};
