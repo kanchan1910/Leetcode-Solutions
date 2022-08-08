@@ -1,0 +1,25 @@
+class Solution {
+public:
+    long long countBadPairs(vector<int>& nums)
+    {
+        // nums[j] - nums[i] != j - i
+        // nums[j] - j != nums[i] - i
+        
+        long long n = nums.size();
+        unordered_map<long long, long long>m;
+        long long total = (n * (n - 1)) / 2;
+        long long equal = 0;
+        for(long long i = 0; i < n; i++)
+        {
+            m[nums[i] - i]++;
+        }
+        for(auto x: m)
+        {
+            equal += ((x.second * (x.second - 1)) / 2);
+        }
+        return total - equal;
+        
+    }
+};
+ 
+
