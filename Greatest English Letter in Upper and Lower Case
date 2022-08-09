@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string greatestLetter(string s) 
+    {
+        vector<int>upper(26, 0);
+        vector<int>lower(26, 0);
+        string ans = "";
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(s[i] >= 'a' && s[i] <= 'z')
+            {
+                lower[s[i] - 'a'] = 1;
+            }
+            else
+            {
+                upper[s[i] - 'A'] = 1;
+            }
+        }
+        for(int i = 25; i >= 0; i--)
+        {
+            if(lower[i] == 1 && upper[i] == 1)
+            {
+                ans.push_back(i + 'A');
+                return ans;
+            }
+        }
+        return ans;
+    }
+};
