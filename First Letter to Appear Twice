@@ -1,0 +1,16 @@
+class Solution {
+public:
+    char repeatedCharacter(string s)
+    {
+        unordered_set<char>ss;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(ss.find(s[i]) != ss.end())
+            {
+                return s[i];
+            }
+            ss.insert(s[i]);
+        }
+        return 'a';
+    }
+};
