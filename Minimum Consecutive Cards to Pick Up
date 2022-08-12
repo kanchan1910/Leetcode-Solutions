@@ -1,0 +1,84 @@
+class Solution {
+public:
+    int minimumCardPickup(vector<int>& cards) 
+    {
+        unordered_map<int, vector<int>>m, p;
+        long long index1 = -1, index2 = -1, diff = -1;
+        int ans = INT_MAX;
+        
+        for(int i = 0; i < cards.size(); i++)
+        {
+            if(m.find(cards[i]) == m.end())
+            {
+                m[cards[i]].push_back(i);
+            }
+            else
+            {
+                if(m[cards[i]].size() == 1)
+                {
+                    m[cards[i]].push_back(i);
+                }
+                else
+                {
+                    index1 = m[cards[i]][0];
+                    index2 = m[cards[i]][1];
+                    diff = index2 - index1;
+
+                    if(diff >= i - index2)
+                    {
+                        m[cards[i]][0] = index2;
+                        m[cards[i]][1] = i;
+                    }
+                }
+            }
+        }
+        
+    
+        for(auto x: m)
+        {
+            if(x.second.size() == 2)
+            {
+               // cout << x.second[1] << " " << x.second[0] << endl;
+                ans = min(ans, x.second[1] - x.second[0]);
+            }
+        }
+        
+        index1 = -1, index2 = -1, diff = -1;
+        for(int i = cards.size() - 1; i >= 0; i--)
+        {
+            if(p.find(cards[i]) == p.end())
+            {
+                p[cards[i]].push_back(i);
+            }
+            else
+            {
+                if(p[cards[i]].size() == 1)
+                {
+                    p[cards[i]].push_back(i);
+                }
+                else
+                {
+                    index1 = p[cards[i]][0];
+                    index2 = p[cards[i]][1];
+                    diff = abs(index2 - index1);
+
+                    if(diff >= abs(i - index2))
+                    {
+                        p[cards[i]][0] = index2;
+                        p[cards[i]][1] = i;
+                    }
+                }
+            }
+        }
+        
+        for(auto x: p)
+        {
+            if(x.second.size() == 2)
+            {
+               // cout << x.second[1] << " " << x.second[0] << endl;
+                ans = min(ans, abs(x.second[1] - x.second[0]));
+            }
+        }
+        return ans == INT_MAX ? -1: ans + 1;
+    }
+};
