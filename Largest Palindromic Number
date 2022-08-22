@@ -1,0 +1,100 @@
+class Solution {
+public:
+    static bool com(pair<char, int>&a, pair<char, int>&b)
+    {
+        return a.first >= b.first;
+    }
+    string largestPalindromic(string num)
+    {
+        unordered_map<char, int>m;
+        vector<pair<char, int>>temp;
+        for(int i = 0; i < num.length(); i++)
+        {
+            m[num[i]]++;
+        }
+        int odd = 0, even = 0;
+        int zero = 0;
+        char ch = '!';
+        int len = 0;
+        int maxi = INT_MIN;
+        for(auto x: m)
+        {
+            if(x.first == '0')
+            {
+                zero = x.second;
+            }
+            if(x.second %2 != 0)
+            {
+                if(x.first - '0' > maxi)
+                {
+                    maxi = x.first - '0';
+                    ch = x.first;
+                }
+                odd++;
+                if(x.second != 1)
+                {
+                    temp.push_back({x.first, x.second - 1});
+                    len += x.second - 1;
+                }
+            }
+            else
+            {
+                len += x.second;
+                temp.push_back({x.first, x.second});
+                even++;
+            }
+        }
+        if(odd != 0)
+        {
+            len++;
+        }
+        if(zero == num.length())
+        {
+            return "0";
+        }
+     //   cout << zero << endl;
+        if(zero + 1 == num.length())
+        { 
+            for(int i = 0; i < num.length(); i++)
+            {
+                if(num[i] != '0')
+                {
+                    string ans = "";
+                    ans += num[i];
+                     return ans;
+                }
+             }
+        }
+    //    cout << "here";
+        sort(temp.begin(), temp.end(), com);
+       string ans = string(len, '0');
+       int l = 0, r = len - 1;
+       for(int i = 0; i < temp.size(); i++)
+       {
+           for(int j = 0; j < temp[i].second / 2; j++)
+           {
+               ans[l] = temp[i].first;
+               l++;
+               ans[r] = temp[i].first;
+               r--;
+           }
+       }
+       // cout << ans << endl;
+       if(ch != '!')
+       {
+           int middle = len / 2;
+           ans[middle] = ch;
+       }
+       while(ans.length() > 0 && ans.back() == '0')
+       {
+           ans.pop_back();
+       }
+        reverse(ans.begin(), ans.end());
+        
+        while(ans.length() > 0 && ans.back() == '0')
+       {
+           ans.pop_back();
+       }
+       return ans;
+    }
+};
