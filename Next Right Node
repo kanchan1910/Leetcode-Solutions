@@ -1,0 +1,59 @@
+class Solution
+{
+public:
+    Node *nextRight(Node *root, int key)
+    {
+        if(root->data == key)
+        {
+            return new Node(-1);
+        }
+        queue<Node*>q;
+        q.push(root);
+        vector<int>ans;
+        while(!q.empty())
+        {
+            int sz = q.size();
+            bool f = false;
+            for(int i = 0; i < sz; i++)
+            {
+                Node* front = q.front();
+                q.pop();   
+                if(front->left != NULL)
+                {
+                    if(front->left->data == key)
+                    {
+                        f = true;
+                    }
+                    ans.push_back(front->left->data);
+                    q.push(front->left);
+                }
+                if(front->right != NULL)
+                {
+                    if(front->right->data == key)
+                    {
+                        f = true;
+                    }
+                    ans.push_back(front->right->data);
+                    q.push(front->right);
+                }
+            }
+            if(f == true)
+            {
+                break;
+            }
+            ans.clear();
+        }
+        for(int i = 0; i < ans.size(); i++)
+        {
+            if(ans[i] == key)
+            {
+                if(i != ans.size() - 1)
+                {
+                    return new Node(ans[i + 1]);
+                }
+                return new Node(-1);
+            }
+        }
+        return new Node(-1);
+    }
+};
