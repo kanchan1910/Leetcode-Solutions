@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countAsterisks(string s)
+    {
+        bool f = false;
+        int ans = 0;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(s[i] == '|')
+            {
+                if(f == false)
+                {
+                    f = true;
+                }
+                else
+                {
+                    f = false;
+                }
+            }
+            else if(s[i] == '*')
+            {
+                if(f == false)
+                {
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+};
