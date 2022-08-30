@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int sum_of_digits(int num)
+    {
+        int sum = 0;
+        string numm = to_string(num);
+        for(int i = 0; i < numm.length(); i++)
+        {
+            sum += (numm[i] - '0');
+        }
+        return sum;
+    }
+    int countEven(int num) 
+    {
+        int count = 1;
+        if(num == 1)
+        {
+            return 0;
+        }
+        if(num == 2)
+        {
+            return 1;
+        }
+        for(int i = 3; i <= num; i++)
+        {
+            int digitSum = sum_of_digits(i);
+            if(digitSum % 2 == 0)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+};
