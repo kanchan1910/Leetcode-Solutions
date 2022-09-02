@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maximumGroups(vector<int>& grades) 
+    {
+        sort(grades.begin(), grades.end());
+        int grp = 1;
+        int num = 2;
+        int i = num;
+        if(i >= grades.size())
+        {
+            return grp;
+        }
+        while(i < grades.size())
+        {
+            grp++;
+            num++;
+            i += num;
+        }
+        return grp;
+    }
+};
+
+    
