@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int percentageLetter(string s, char letter) {
+        unordered_map<char, int>m;
+        for(int i = 0; i < s.length(); i++)
+        {
+            m[s[i]]++;
+        }
+        if(m.find(letter) == m.end())
+        {
+            return 0;
+        }
+        return (m[letter] * 100 / s.length());
+    }
+};
