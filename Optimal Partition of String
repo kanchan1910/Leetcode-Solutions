@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int partitionString(string s) 
+    {
+        int ans = 0;
+        unordered_set<char>ss;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(ss.find(s[i]) != ss.end())
+            {
+                ans++;
+                ss.clear();
+            }
+            ss.insert(s[i]);
+        }
+        return ans + 1;
+    }
+};
