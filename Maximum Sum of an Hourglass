@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxSum(vector<vector<int>>& grid) 
+    {
+        int ans = 0;
+        for(int i = 0; i <= grid.size() - 3; i++)
+        {
+            for(int j = 0; j <= grid[0].size() - 3; j++)
+            {
+                 int sum = 0;
+                 for(int k = j; k <= j + 2; k++)
+                 {
+                     sum += grid[i][k];
+                     sum += grid[i + 2][k];
+                 }
+                 sum += grid[i + 1][j + 1];
+                 ans = max(ans, sum);
+            }
+        }
+        return ans;
+    }
+};
