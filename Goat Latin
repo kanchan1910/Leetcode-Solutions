@@ -1,0 +1,65 @@
+class Solution {
+public:
+    bool isVowel(char ch)
+    {
+        return ch == 'a' || ch == 'o' || ch == 'e' || ch == 'i' || ch == 'u' || ch == 'A' || ch == 'O' || ch == 'E' || ch == 'I' || ch == 'U';
+    }
+    string toGoatLatin(string sentence) 
+    {
+        int count = 0;
+        string ans = "";
+        string tmp = "";
+        for(int i = 0; i < sentence.length(); i++)
+        {
+            if(sentence[i] == ' ')
+            {
+                count++;
+                if(isVowel(tmp[0]) == false)
+                {
+                    char ch = tmp[0];
+                    tmp.erase(0, 1);
+                    tmp += ch;
+                }
+                tmp += "ma";
+                for(int j = 0; j < count; j++)
+                {
+                    tmp += "a";
+                }
+                if(count == 1)
+                {
+                    ans = tmp;
+                }
+                else
+                {
+                    ans += " " + tmp;
+                }
+                tmp = "";
+            }
+            else
+            {
+                tmp += sentence[i];
+            }
+        }
+        count++;
+        if(isVowel(tmp[0]) == false)
+        {
+            char ch = tmp[0];
+            tmp.erase(0, 1);
+            tmp += ch;
+        }
+        tmp += "ma";
+        for(int j = 0; j < count; j++)
+        {
+            tmp += "a";
+        }
+        if(count == 1)
+        {
+            ans = tmp;
+        }
+        else
+        {
+            ans += " " + tmp;
+        }
+        return ans;
+    }
+};
