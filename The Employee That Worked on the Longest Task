@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int hardestWorker(int n, vector<vector<int>>& logs)
+    {
+        int max_time = 0;
+        int prev = 0;
+        int id = INT_MAX;
+        for(int i = 0; i < logs.size(); i++)
+        {
+            if(max_time < logs[i][1] - prev)
+            {
+                max_time = logs[i][1] - prev;
+                id = logs[i][0];
+            }
+            
+            if(max_time == logs[i][1] - prev)
+            {
+                if(id > logs[i][0])
+                {
+                    id = logs[i][0];
+                }
+            }
+            prev = logs[i][1];
+        }
+        return id;
+    }
+};
