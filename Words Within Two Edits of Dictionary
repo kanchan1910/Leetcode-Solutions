@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int diff(string &str1, string &str2){
+        int count = 0;
+        for(int i = 0; i < str1.size(); i++){
+            if(str1[i] != str2[i])
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    vector<string> twoEditWords(vector<string>& queries, vector<string>& dictionary)
+    {
+        vector<string> ans;
+        for(int i = 0; i < queries.size(); i++)
+        {
+            string str1 = queries[i];
+            for(int j = 0; j < dictionary.size(); j++){
+                string str2 = dictionary[j];
+                int check = diff(str1, str2);
+                if(check <= 2)
+                {
+                    ans.push_back(queries[i]);
+                    break;
+                }
+            }
+        }
+        return ans;
+
+    }
+};
