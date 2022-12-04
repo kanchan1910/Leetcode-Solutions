@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool isCircularSentence(string sentence) 
+    {
+        vector<string>tmp;
+        string temp = "";
+        for(int i = 0; i < sentence.length(); i++)
+        {
+            if(sentence[i] == ' ')
+            {
+                tmp.push_back(temp);
+                temp = "";
+            }
+            else
+            {
+                temp += sentence[i];
+            }
+        }
+        tmp.push_back(temp);
+        if(tmp.size() == 1)
+        {
+            string str = tmp[0];
+            if(str[0] != str[str.length() - 1])
+            {
+                return false;
+            }
+            return true;
+        }
+        if(tmp[tmp.size() - 1][tmp[tmp.size() - 1].length() - 1] != tmp[0][0])
+        {
+            return false;
+        }
+        for(int i = 0; i < tmp.size() - 1; i++)
+        {
+            string str1 = tmp[i];
+            string str2 = tmp[i + 1];
+            if(str1[str1.length() - 1] != str2[0])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
