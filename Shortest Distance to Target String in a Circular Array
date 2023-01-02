@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int closetTarget(vector<string>& words, string target, int startIndex) {
+        int ans = INT_MAX;
+        for(int i = 0; i < words.size(); i++)
+        {
+            if(words[i] == target)
+            {
+                if(startIndex == i) {
+                    return 0;
+                }
+                if(ans > abs(i - startIndex)) {
+                    ans = abs(i - startIndex);
+                }
+                if(ans > words.size() - abs(i - startIndex)) {
+                    ans = words.size() - abs(i - startIndex);
+                }
+            }
+        }
+        return ans == INT_MAX ? -1 : ans;
+    }
+};
