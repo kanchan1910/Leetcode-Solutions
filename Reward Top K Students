@@ -1,0 +1,67 @@
+class Solution {
+public:
+    static bool comp(pair<int, int>a, pair<int, int>b)
+    {
+        if(a.first == b.first)
+        {
+            return a.second < b.second;
+        }
+        return a.first > b.first;
+    }
+    vector<int> topStudents(vector<string>& positive_feedback, vector<string>& negative_feedback, vector<string>& report, vector<int>& student_id, int k) 
+    {
+        unordered_map<string, int>pos, neg;
+        for(int i = 0; i < positive_feedback.size(); i++) 
+        {
+            pos[positive_feedback[i]] = 1;
+        }
+        for(int i = 0; i < negative_feedback.size(); i++) 
+        {
+            neg[negative_feedback[i]] = 1;
+        }
+        unordered_map<int, int>student_points;
+        for(auto x: student_id) 
+        {
+            student_points[x] = 0;
+        }
+        for(int i = 0; i < report.size(); i++) 
+        {
+            string student = report[i];
+            student += " ";
+            string str = "";
+            for(auto x: student)
+            {
+                if(x == ' ') 
+                {
+                    if(pos[str] == 1) 
+                    {
+                        student_points[student_id[i]] += 3;
+                    }
+                    if(neg[str] == 1) 
+                    {
+                        student_points[student_id[i]] -= 1;
+                    }
+                    str = "";
+                }
+                else 
+                {
+                    str += x;
+                }
+            }
+        }
+        
+        vector<pair<int, int>>v;
+        for(auto x: student_points) 
+        {
+            v.push_back({x.second, x.first});
+        }
+        sort(v.begin(), v.end(), comp);
+        vector<int>ans;
+        
+        for(int i = 0; i < k; i++)
+        {
+            ans.push_back(v[i].second);
+        }
+        return ans;
+    }
+};
