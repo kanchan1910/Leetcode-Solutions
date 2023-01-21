@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int digitSum(string num) {
+        if(num.length() < 2) {
+            return stoi(num);
+        }
+        long long sum = 0;
+        for(int i = 0; i < num.length(); i++)
+        {
+            sum += (num[i] - '0');
+        }
+        return sum;
+    }
+    int differenceOfSum(vector<int>& nums) 
+    {
+        int ele_sum = 0;
+        int digi_sum = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            digi_sum += digitSum(to_string(nums[i]));
+            ele_sum += nums[i];
+        }
+        return abs(ele_sum - digi_sum);
+    }
+};
