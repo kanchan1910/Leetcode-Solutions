@@ -1,0 +1,24 @@
+class Solution {
+public:
+    long long minOperations(vector<int>& nums1, vector<int>& nums2, int k) {
+        if(k == 0) {
+            if(nums1 == nums2) {
+                return 0;
+            }
+            return -1;
+        }
+        long long pdiff = 0, ndiff = 0;
+        for(int i = 0; i < nums1.size(); i++) {
+            if(nums1[i] <= nums2[i]) {
+                pdiff += (nums1[i] - nums2[i]);
+            }
+            else {
+                ndiff += (nums2[i] - nums1[i]);
+            }
+        }
+        if(pdiff == ndiff && (abs(pdiff) % k == 0)) {
+            return abs(pdiff)/k;
+        }
+        return -1;
+    }
+};
