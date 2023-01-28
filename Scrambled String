@@ -1,0 +1,29 @@
+class Solution {
+public:
+    unordered_map<string, bool>m;
+    bool isScramble(string S1, string S2) {
+        int len = S1.length();
+        if(len == 0) {
+            return true;
+        }
+        if(S1 == S2) {
+            return true;
+        }
+        string SS1 = S1, SS2 = S2;
+        sort(SS1.begin(), SS1.end());
+        sort(SS2.begin(), SS2.end());
+        if(SS1 != SS2) {
+            return false;
+        }
+        string str = S1 + S2;
+        if(m.find(str) != m.end()) {
+            return m[str];
+        }
+        for(int i = 1; i < len; i++) {
+            if((isScramble(S1.substr(0, i), S2.substr(0, i)) == true && isScramble(S1.substr(i, len - i), S2.substr(i, len - 1)) == true) || (isScramble(S1.substr(0, i), S2.substr(len - i, i)) == true && isScramble(S1.substr(i, len - i), S2.substr(0, len - i)) == true)) {
+                return m[str] = true;
+            }
+        }
+        return m[str] = false;
+    }
+};
