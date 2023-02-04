@@ -1,0 +1,50 @@
+
+class Solution{
+    public:
+    bool canMove(int i, int j, int R, int C) {
+        return i >= 0 && j >= 0 && i < R && j < C;
+    }
+    pair<int,int> endPoints(vector<vector<int>> matrix, int R, int C){
+        //code here
+        int cur_i = 0, cur_j = 0;
+        char cur_d = 'r';
+        int ans_i = 0, ans_j = 0;
+        unordered_map<char, char> dir = { {'u', 'r'}, {'r', 'd'}, {'d', 'l'}, {'l', 'u'}};
+        while(canMove(cur_i, cur_j, R, C) == true) {
+            ans_i = cur_i, ans_j = cur_j;
+            if(matrix[cur_i][cur_j] == 0) {
+                if(cur_d == 'u') {
+                    cur_i--;
+                }
+                if(cur_d == 'l') {
+                    cur_j--;
+                }
+                if(cur_d == 'r') {
+                    cur_j++;
+                }
+                if(cur_d == 'd') {
+                    cur_i++;
+                }
+            }
+            else {
+                char new_dir = dir[cur_d];
+                cur_d = new_dir;
+                matrix[cur_i][cur_j] = 0;
+                if(new_dir == 'u') {
+                    cur_i--;
+                }
+                if(new_dir == 'l') {
+                    cur_j--;
+                }
+                if(new_dir == 'r') {
+                    cur_j++;
+                }
+                if(new_dir == 'd') {
+                    cur_i++;
+                }
+            }
+        }
+        return {ans_i, ans_j};
+    }
+    
+};
