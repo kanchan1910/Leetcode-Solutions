@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minOperations(int n) {
+        int ans = 0;
+        while(n > 0) {
+            ans++;
+            n = getCloseNumber(n);
+        }
+        return ans;
+    }
+    int getCloseNumber(int n) {
+        int num = 1;
+        while(num < n) {
+            num *= 2;
+        }
+        int higherDiff = num - n;
+        num /= 2;
+        int lowerDiff = n - num;
+        if(lowerDiff < higherDiff) {
+            return lowerDiff;
+        }
+        return higherDiff;
+
+    }
+};
